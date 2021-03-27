@@ -1,0 +1,54 @@
+{
+  "name": "bitshop",
+  "private": true,
+  "scripts": {
+    "start": "meteor run",
+    "test": "meteor test --once --driver-package meteortesting:mocha",
+    "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
+    "visualize": "meteor --production --extra-packages bundle-visualizer"
+  },
+  "dependencies": {
+    "@babel/runtime": "7.11.2",
+    "@material-ui/core": "4.11.3",
+    "@material-ui/icons": "4.11.2",
+    "meteor-node-stubs": "1.0.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "meteor": {
+    "mainModule": {
+      "client": "client/main.jsx",
+      "server": "server/main.js"
+    },
+    "testModule": "tests/main.js"
+  },
+  "devDependencies": {
+    "@meteorjs/eslint-config-meteor": "^1.0.5",
+    "babel-eslint": "10.1.0",
+    "eslint": "7.23.0",
+    "eslint-config-airbnb": "18.2.1",
+    "eslint-import-resolver-meteor": "0.4.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-jsx-a11y": "6.4.1",
+    "eslint-plugin-meteor": "7.3.0",
+    "eslint-plugin-react": "7.23.1"
+  },
+  "eslintConfig": {
+    "extends": "@meteorjs/eslint-config-meteor",
+    "rules": {
+      "react/forbid-prop-types": [
+        1,
+        {
+          "forbid": [
+            "any",
+            "array"
+          ]
+        }
+      ]
+    }
+  },
+  "eslintIgnore": [
+    "node_modules",
+    ".meteor"
+  ]
+}
