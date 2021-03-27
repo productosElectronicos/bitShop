@@ -5,3 +5,6 @@
 ## Descripción del cambio
 
 ## Tipo de cambio
+Marcar con x
+* [] Servidor
+* [] Cliente
