@@ -19,8 +19,7 @@
     "mainModule": {
       "client": "client/main.jsx",
       "server": "server/main.js"
-    },
-    "testModule": "tests/main.js"
+    }
   },
   "devDependencies": {
     "@meteorjs/eslint-config-meteor": "^1.0.5",

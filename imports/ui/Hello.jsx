@@ -1,9 +1,18 @@
 import React, { useState } from 'react';
 
+import test from './helpersApp';
+
 const Hello = () => {
   const [counter, setCounter] = useState(0);
 
-  const increment = () => {
+  const increment = async () => {
+    try {
+      const texto = await test();
+      console.log(texto);
+    } catch (error) {
+      // console.error(error);
+    }
+
     setCounter(counter + 1);
   };
 
