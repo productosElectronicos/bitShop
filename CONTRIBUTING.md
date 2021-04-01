@@ -44,6 +44,16 @@ https://react-tutorial.meteor.com/
 
 <hr/>
 
+## 4. Manejo de ramas
+**No se debe realizar un commit directamente a main o staging.**
+
+Para todo el manejo de ramas se debe seguir la siguiente guía: 
+
+1. Crear ramas de una funcionalidad desde staging
+2. Una vez finalizada la codificación de la funcionalidad con las respectivas pruebas, crear el pull request con rama base **staging**
+3. Asignar como Reviewers a @Jtorome o a @jumarinr
+4. Esperar aprobación del Pull Request. 
+
 # Guía de contribución backend
 
 ## 1. Orden de imports
