@@ -1,6 +1,6 @@
 # Guía de contribución para el proyecto **BitShop**
 
-## Requisitos: prevíos 
+## Requisitos prevíos:
 
 ## 1. Instalar Meteor (Framework utilizado para la aplicación)
 
