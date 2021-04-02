@@ -23,7 +23,7 @@ import { iniciarSesion, noEsValidoIniciarSesion } from './helpersInicioSesion.js
 import Copyright from '../Copyright/Copyright.jsx';
 import registroStyles from '../Registro/registroStyles';
 
-const Registro = ({ classes }) => {
+const InicioSesion = ({ classes }) => {
   const { enqueueSnackbar } = useSnackbar();
 
   const [username, setUsername] = useState('');
@@ -139,4 +139,4 @@ const Registro = ({ classes }) => {
   );
 };
 
-export default withStyles(registroStyles)(Registro);
+export default withStyles(registroStyles)(InicioSesion);
