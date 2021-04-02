@@ -56,9 +56,7 @@ const Registro = ({ classes }) => {
     } catch (error) {
       console.error(error);
 
-      const messageError = error.reason || error.message;
-
-      enqueueSnackbar(messageError, {
+      enqueueSnackbar('Datos invalidos, por favor verificar', {
         variant: 'error',
       });
     }
