@@ -24,3 +24,4 @@ react-meteor-data       # React higher-order component for reactively tracking M
 mdg:validated-method
 http
 promise
+fetch
