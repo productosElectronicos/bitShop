@@ -8,8 +8,9 @@ import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 import Container from '@material-ui/core/Container';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import TextField from '@material-ui/core/TextField';
@@ -67,89 +68,89 @@ const Registro = ({ classes }) => {
 
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
       <div className={classes.paper}>
+        <Card>
+          <CardContent className={classes.cardContent}>
+            <Avatar
+              className={classes.avatar}
+              alt="BitShop"
+              src="images/BITSHOP.png"
+              variant="rounded"
+            />
 
-        <Avatar
-          className={classes.avatar}
-          alt="BitShop"
-          src="images/BITSHOP.png"
-          variant="rounded"
-        />
+            <Typography component="h1" variant="h5">
+              Registro para BitShop
+            </Typography>
 
-        <Typography component="h1" variant="h5">
-          Registro para BitShop
-        </Typography>
+            <form className={classes.form} validate="true" onSubmit={(event) => onRegisterUser(event)}>
 
-        <form className={classes.form} validate="true" onSubmit={(event) => onRegisterUser(event)}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="nombre"
+                label="Nombre completo"
+                name="nombre"
+                autoComplete="true"
+                autoFocus
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
 
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="nombre"
-            label="Nombre completo"
-            name="nombre"
-            autoComplete="true"
-            autoFocus
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Correo electronico"
+                name="email"
+                autoComplete="email"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
 
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Correo electronico"
-            name="email"
-            autoComplete="email"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Contraseña"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
 
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Contraseña"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+              >
+                Registrarme ahora!
+              </Button>
 
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-          >
-            Registrarme ahora!
-          </Button>
+              <Grid container>
+                <Grid item xs={12}>
+                  <div className={classes.textItemAlign}>
+                    <Link href="/" variant="body2">
+                      ¿Tienes una cuenta? Ingresa aqui ahora!
+                    </Link>
+                  </div>
 
-          <Grid container>
-            <Grid item xs={12}>
-              <div className={classes.textItemAlign}>
-                <Link href="/" variant="body2">
-                  ¿Tienes una cuenta? Ingresa aqui ahora!
-                </Link>
-              </div>
-
-            </Grid>
-          </Grid>
-
-        </form>
+                </Grid>
+              </Grid>
+            </form>
+            <Box mt={8}>
+              <Copyright />
+            </Box>
+          </CardContent>
+        </Card>
       </div>
-
-      <Box mt={8}>
-        <Copyright />
-      </Box>
 
     </Container>
   );

@@ -65,7 +65,7 @@ const Routes = () => {
       >
         <Suspense fallback={<PaginaSuspendida />}>
 
-          <Switch location={location} key={location.pathname}>
+          <Switch>
             {getPrivateRoutes()
               .map(({ component, path }) => privateRouteComponent(component, path))}
           </Switch>
