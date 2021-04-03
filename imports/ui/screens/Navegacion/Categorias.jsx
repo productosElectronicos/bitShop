@@ -22,6 +22,7 @@ const Categorias = () => (
         onChange={() => null}
         fullWidth
         labelWidth={80}
+        style={{ backgroundColor: '#ffffff' }}
       >
         <MenuItem value={10}>Tecnologia</MenuItem>
         <MenuItem value={20}>Videojuegos</MenuItem>

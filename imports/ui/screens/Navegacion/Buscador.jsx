@@ -29,6 +29,7 @@ const Buscador = () => {
           value={busqueda}
           autoFocus
           onChange={(e) => setBusqueda(e.target.value)}
+          style={{ backgroundColor: '#ffffff' }}
           endAdornment={(
             <InputAdornment position="end">
               <IconButton

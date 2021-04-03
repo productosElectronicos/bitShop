@@ -31,6 +31,7 @@ const Tiendas = () => (
           size="small"
           variant="outlined"
           key={tienda}
+          style={{ background: '#ffffff' }}
         >
           {tienda}
         </Button>

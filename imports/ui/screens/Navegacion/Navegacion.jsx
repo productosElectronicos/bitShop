@@ -38,12 +38,12 @@ const Navegacion = ({ children, classes, ...props }) => (
 
                 {/* Categorias */}
                 <Grid container spacing={2}>
-                  <Grid item xs={12} md={4}>
+                  <Grid item xs={12} md={3}>
                     <Categorias />
                   </Grid>
 
                   {/* Buscador */}
-                  <Grid item xs={12} md={8}>
+                  <Grid item xs={12} md={9}>
                     <Buscador />
                   </Grid>
                 </Grid>
