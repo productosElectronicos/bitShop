@@ -6,6 +6,8 @@ import { ThemeProvider } from '@material-ui/core/styles';
 
 import React from 'react';
 
+import CssBaseline from '@material-ui/core/CssBaseline';
+
 import {
   ANCHOR_ORIGIN, AUTO_HIDE_DURATION, MAX_SNACK, PREVENT_DUPLICATE,
 } from '../configs/snackbarOptions';
@@ -18,6 +20,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={themeLight}>
+      <CssBaseline />
       <SnackbarProvider
         anchorOrigin={ANCHOR_ORIGIN}
         maxSnack={MAX_SNACK}

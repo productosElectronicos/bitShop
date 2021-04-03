@@ -4,10 +4,9 @@ import React from 'react';
 
 // material ui core
 import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
 
 const Dashboard = () => (
-  <Container component="main" maxWidth="xs">
+  <>
     Id Usuario autenticado:
     {' '}
     {Meteor.userId()}
@@ -19,7 +18,7 @@ const Dashboard = () => (
     >
       Cerrar sesión
     </Button>
-  </Container>
+  </>
 );
 
 export default Dashboard;
