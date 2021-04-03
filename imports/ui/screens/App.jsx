@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { BrowserRouter } from 'react-router-dom';
 import { SnackbarProvider } from 'notistack';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 import React from 'react';
 
@@ -10,21 +11,24 @@ import {
 } from '../configs/snackbarOptions';
 
 import Routes from '../routes';
+import themeLight from '../theme/themeLight';
 
 const App = () => {
   useTracker(() => Meteor.userId());
 
   return (
-    <SnackbarProvider
-      anchorOrigin={ANCHOR_ORIGIN}
-      maxSnack={MAX_SNACK}
-      preventDuplicate={PREVENT_DUPLICATE}
-      autoHideDuration={AUTO_HIDE_DURATION}
-    >
-      <BrowserRouter>
-        <Routes />
-      </BrowserRouter>
-    </SnackbarProvider>
+    <ThemeProvider theme={themeLight}>
+      <SnackbarProvider
+        anchorOrigin={ANCHOR_ORIGIN}
+        maxSnack={MAX_SNACK}
+        preventDuplicate={PREVENT_DUPLICATE}
+        autoHideDuration={AUTO_HIDE_DURATION}
+      >
+        <BrowserRouter>
+          <Routes />
+        </BrowserRouter>
+      </SnackbarProvider>
+    </ThemeProvider>
   );
 };
 
