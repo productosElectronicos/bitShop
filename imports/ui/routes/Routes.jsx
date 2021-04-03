@@ -14,6 +14,7 @@ import PublicComponent from './PublicComponent.jsx';
 import PrivateComponent from './PrivateComponent.jsx';
 
 import PaginaSuspendida from '../screens/PaginaSuspendida/PaginaSuspendida.jsx';
+import Navegacion from '../screens/Navegacion/Navegacion.jsx';
 
 // public and private pages
 const publicPages = getPublicRoutes().map((route) => route.path);
@@ -63,13 +64,14 @@ const Routes = () => {
         path={privatePages}
         exact
       >
-        <Suspense fallback={<PaginaSuspendida />}>
-
-          <Switch>
-            {getPrivateRoutes()
-              .map(({ component, path }) => privateRouteComponent(component, path))}
-          </Switch>
-        </Suspense>
+        <Navegacion>
+          <Suspense fallback={<PaginaSuspendida />}>
+            <Switch>
+              {getPrivateRoutes()
+                .map(({ component, path }) => privateRouteComponent(component, path))}
+            </Switch>
+          </Suspense>
+        </Navegacion>
       </Route>
 
       <Redirect to="/" />
