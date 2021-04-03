@@ -1,20 +1,19 @@
 import { Meteor } from 'meteor/meteor';
 
+import React from 'react';
+
 // material ui core
 import Button from '@material-ui/core/Button';
 
-import React from 'react';
-
 const Dashboard = () => (
-  < >
+  <>
     Id Usuario autenticado:
     {' '}
     {Meteor.userId()}
     <Button
       size="small"
-      color="primary"
+      color="secondary"
       variant="contained"
-      style={{ backgroundColor: '#f85032' }}
       onClick={() => Meteor.logout()}
     >
       Cerrar sesión

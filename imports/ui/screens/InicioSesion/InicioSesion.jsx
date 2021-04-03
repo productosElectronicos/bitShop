@@ -10,8 +10,9 @@ import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 import Container from '@material-ui/core/Container';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import TextField from '@material-ui/core/TextField';
@@ -64,77 +65,78 @@ const InicioSesion = ({ classes }) => {
 
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
       <div className={classes.paper}>
+        <Card>
+          <CardContent className={classes.cardContent}>
+            <Avatar
+              className={classes.avatar}
+              alt="BitShop"
+              src="images/BITSHOP.png"
+              variant="rounded"
+            />
 
-        <Avatar
-          className={classes.avatar}
-          alt="BitShop"
-          src="images/BITSHOP.png"
-          variant="rounded"
-        />
+            <Typography component="h1" variant="h5">
+              Iniciar sesión en BitShop
+            </Typography>
 
-        <Typography component="h1" variant="h5">
-          Iniciar sesión en BitShop
-        </Typography>
+            <form className={classes.form} validate="true" onSubmit={(event) => onLoginUser(event)}>
 
-        <form className={classes.form} validate="true" onSubmit={(event) => onLoginUser(event)}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                autoFocus
+                label="Correo electronico"
+                name="email"
+                autoComplete="email"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
 
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            autoFocus
-            label="Correo electronico"
-            name="email"
-            autoComplete="email"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Contraseña"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
 
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Contraseña"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+              >
+                Iniciar Sesión
+              </Button>
 
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-          >
-            Iniciar Sesión
-          </Button>
+              <Grid container>
+                <Grid item xs={12}>
+                  <div className={classes.textItemAlign}>
+                    <Link href="/registro" variant="body2">
+                      ¿No tienes cuenta? Registrate aqui!
+                    </Link>
+                  </div>
 
-          <Grid container>
-            <Grid item xs={12}>
-              <div className={classes.textItemAlign}>
-                <Link href="/registro" variant="body2">
-                  ¿No tienes cuenta? Registrate aqui!
-                </Link>
-              </div>
+                </Grid>
+              </Grid>
+            </form>
 
-            </Grid>
-          </Grid>
+            <Box mt={8}>
+              <Copyright />
+            </Box>
 
-        </form>
+          </CardContent>
+        </Card>
       </div>
-
-      <Box mt={8}>
-        <Copyright />
-      </Box>
-
     </Container>
   );
 };

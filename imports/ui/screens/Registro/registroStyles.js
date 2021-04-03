@@ -1,15 +1,22 @@
 const registroStyles = (theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(6),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  cardContent: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
   avatar: {
-    margin: theme.spacing(1),
     backgroundColor: 'transparent',
     width: theme.spacing(12),
     height: theme.spacing(12),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   form: {
     width: '100%', // Fix IE 11 issue.
