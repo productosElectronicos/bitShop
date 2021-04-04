@@ -5,6 +5,11 @@ const paginaSuspendidaStyles = (theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
+  cardContent: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: 'transparent',

@@ -74,7 +74,7 @@ const Registro = ({ classes }) => {
             <Avatar
               className={classes.avatar}
               alt="BitShop"
-              src="images/BITSHOP.png"
+              src="/images/BITSHOP.png"
               variant="rounded"
             />
 
