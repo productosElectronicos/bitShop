@@ -228,6 +228,7 @@ con el tema de la funcionalidad que se desarrollará. Ejemplo: Estoy trabajando 
 // se creará un archivo llamado editarUsarioMethod.js
 
 // se importa lo necesario
+import { Meteor } from 'meteor/meteor';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 
 import SimpleSchema from 'simpl-schema';
@@ -243,7 +244,7 @@ const editarUsarioMethod = new ValidatedMethod({
   }).validator(),
   run({ nombre, numeroTelefonico }) {
     const editaUsuario = editarUsario({
-      usuarioContext: this.user;
+      usuarioContext: Meteor.user();
       nombre,
       numeroTelefonico,
     })
