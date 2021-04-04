@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 /**
  *
  * @typedef Resultado
@@ -12,10 +14,10 @@
  */
 
 /**
- *
+ * @param {Number|undefined} limit limite de resultados
  * @returns {Resultado[]}
  */
-const obtenerResultadosFalabella = () => {
+const obtenerResultadosFalabella = (limit) => {
   const resultados = [
     {
       nombreProducto: 'Celular Xiaomi Redmi Note 8 128GB',
@@ -58,7 +60,7 @@ const obtenerResultadosFalabella = () => {
       enlaceProducto: 'https://www.falabella.com.co/falabella-co/product/9990414/All-in-One-HP-20-pulgadas-Intel-Celeron-4GB-500GB/9990414',
     },
     {
-      nombreProducto: 'Portátil Acer Nitro 5 15.6 pulgadas Intel Core i5 8GB 512GB',
+      nombreProducto: 'Portatil Acer Nitro 5 15.6 pulgadas Intel Core i5 8GB 512GB',
       precioProducto: 3539900,
       descripcionProducto: 'Incluye cargador y manual de uso. Información Adicional La memoria interna y la RAM disponibles para el usuario dependen del sistema operativo y las aplicaciones precargadas.',
       localizacion: 'N/A',
@@ -68,7 +70,7 @@ const obtenerResultadosFalabella = () => {
       enlaceProducto: 'https://www.falabella.com.co/falabella-co/product/9351676/Portatil-Acer-Nitro-5-15.6-pulgadas-Intel-Core-i5-8GB-512GB/9351676',
     },
     {
-      nombreProducto: 'Portátil Lenovo Notebook 14 pulgadas Intel Core i5 8GB 256GB',
+      nombreProducto: 'Portatil Lenovo Notebook 14 pulgadas Intel Core i5 8GB 256GB',
       precioProducto: 4299900,
       descripcionProducto: '1 año. Información Adicional La memoria interna y la RAM disponibles para el usuario dependen del sistema operativo y las aplicaciones precargadas.',
       localizacion: 'N/A',
@@ -118,6 +120,11 @@ const obtenerResultadosFalabella = () => {
       enlaceProducto: 'https://www.falabella.com.co/falabella-co/product/prod10900024/iPhone-XR-64GB/9722708',
     },
   ];
+
+  if (limit) {
+    return _.sampleSize(resultados, limit);
+  }
+
   return resultados;
 };
 

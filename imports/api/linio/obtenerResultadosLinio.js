@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 /**
  *
  * @typedef Resultado
@@ -12,13 +14,13 @@
  */
 
 /**
- *
+ * @param {Number|undefined} limit limite de resultados
  * @returns {Resultado[]}
  */
-const obtenerResultadosLinio = () => {
+const obtenerResultadosLinio = (limit) => {
   const resultados = [
     {
-      nombreProducto: 'Portátil Acer Nitro 5 15.6 pulgadas Intel Core i5 8GB 512GB',
+      nombreProducto: 'Portatil Acer Nitro 5 15.6 pulgadas Intel Core i5 8GB 512GB',
       precioProducto: 3539900,
       descripcionProducto: 'Disco duro HDD=No aplica Duración aproximada de la batería=7 hrs Marca=Acer Hecho en=China Modelo tarjeta de video=Nvidia Geforce Gtx 1650 4Gb Ddr5 Generación del procesador=9°',
       localizacion: 'Bogotá',
@@ -118,6 +120,10 @@ const obtenerResultadosLinio = () => {
       enlaceProducto: 'https://www.linio.com.co/p/juego-death-stranding-ps4-nuevo-fisico-ons03z?qid=f7ceccecc80ce5d511889eed254f3817&oid=SO861ME151SG4LCO&position=1&sku=SO861ME151SG4LCO',
     },
   ];
+
+  if (limit) {
+    return _.sampleSize(resultados, limit);
+  }
   return resultados;
 };
 

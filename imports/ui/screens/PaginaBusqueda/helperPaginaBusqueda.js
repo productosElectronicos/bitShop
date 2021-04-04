@@ -14,8 +14,8 @@ import { Meteor } from 'meteor/meteor';
 */
 
 /**
- *
- * @param {String} texto
+ * función para que a partir de un texto se obtenga el resultado de búsqueda
+ * @param {String} texto texto a buscar
  * @returns {Promise<Resultado[]>}
  */
 export const obtenerTodosLosResultados = (texto) => new Promise(
@@ -32,4 +32,21 @@ export const obtenerTodosLosResultados = (texto) => new Promise(
   ),
 );
 
-export const a = 1;
+/**
+ * función para crear elemento visto
+ * @param {Resultado} producto
+ * @returns {Promise<String>} id producto visto en db
+ */
+export const crearElementoVisto = (producto) => new Promise(
+  (resolve, reject) => Meteor.call(
+    'crearElementoVisto',
+    { producto },
+    (err, result) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(result);
+      }
+    },
+  ),
+);

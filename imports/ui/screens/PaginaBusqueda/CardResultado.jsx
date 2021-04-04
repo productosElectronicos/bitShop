@@ -20,6 +20,7 @@ import Share from '@material-ui/icons/Share';
 import { tranformarNumeroAString } from '../../../commons/utilidades.js';
 
 import cardResultadoEstilo from './cardResultadoEstilo.jsx';
+import { crearElementoVisto } from './helperPaginaBusqueda.js';
 
 const CardResultado = ({
   nombreProducto, precioProducto, descripcionProducto,
@@ -27,6 +28,18 @@ const CardResultado = ({
   classes,
 }) => {
   const precio = tranformarNumeroAString(precioProducto);
+
+  const producto = {
+    nombreProducto,
+    precioProducto,
+    descripcionProducto,
+    localizacion,
+    fotoProducto,
+    esUsado,
+    tienda,
+    enlaceProducto,
+  };
+
   return (
     <>
       <Card>
@@ -63,7 +76,7 @@ const CardResultado = ({
         </CardContent>
         <CardActions style={{ float: 'right' }}>
           <div style={{ float: 'left !important' }}>
-            <Link href={enlaceProducto} target="_blank">
+            <Link href={enlaceProducto} target="_blank" onClick={() => crearElementoVisto(producto)}>
               {`Ir a ${tienda}`}
             </Link>
           </div>

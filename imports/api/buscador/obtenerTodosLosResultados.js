@@ -4,6 +4,7 @@ import BlueBird from 'bluebird';
 
 import obtenerResultadosLinio from '../linio/obtenerResultadosLinio';
 import obtenerResultadosFalabella from '../falabella/obtenerResultadosFalabella';
+import obtenerResultadosExito from '../exito/obtenerResultadosExito';
 
 /**
  *
@@ -52,12 +53,16 @@ const obtenerTodosLosResultados = async (texto) => {
       productos: obtenerResultadosFalabella(),
       texto,
     }),
+    resultadosExito: filtrarPorTexto({
+      productos: obtenerResultadosExito(),
+      texto,
+    }),
 
   });
 
-  const { resultadosLinio, resultadosFalabella } = await allResultados;
+  const { resultadosLinio, resultadosFalabella, resultadosExito } = await allResultados;
 
-  const totalResultados = _.concat(resultadosLinio, resultadosFalabella);
+  const totalResultados = _.concat(resultadosLinio, resultadosFalabella, resultadosExito);
 
   const totalResultadosOrdenados = _.orderBy(
     totalResultados,

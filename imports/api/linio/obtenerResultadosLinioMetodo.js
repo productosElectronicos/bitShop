@@ -1,12 +1,16 @@
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 
+import SimpleSchema from 'simpl-schema';
+
 import obtenerResultadosLinio from './obtenerResultadosLinio';
 
 const obtenerResultadosLinioMetodo = new ValidatedMethod({
   name: 'obtenerResultadosLinio',
-  validate: null,
-  run() {
-    const resultados = obtenerResultadosLinio();
+  validate: new SimpleSchema({
+    limit: { type: Number },
+  }).validator(),
+  run({ limit }) {
+    const resultados = obtenerResultadosLinio(limit);
 
     return resultados;
   },
