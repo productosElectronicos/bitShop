@@ -1,6 +1,6 @@
 const cardResultadoEstilo = () => ({
   media: {
-    height: 140,
+    height: 190,
   },
 });
 
