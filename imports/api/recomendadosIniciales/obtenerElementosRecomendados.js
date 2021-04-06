@@ -1,13 +1,27 @@
-import _ from 'lodash';
-
 import obtenerTodosLosResultados from '../buscador/obtenerTodosLosResultados';
 
-const obtenerElementosRecomendados = async () => {
+/**
+ *
+ * @typedef Producto
+ * @property {String} nombreProducto
+ * @property {Number} precioProducto
+ * @property {String} descripcionProducto
+ * @property {String} localizacion
+ * @property {String} fotoProducto
+ * @property {Boolean} esUsado
+ * @property {String} tienda
+ * @property {String} enlaceProducto
+*/
 
+/**
+ * función para obtener productos más varatos de tu ultima palabra buscada
+ * @param {Number} limit
+ * @returns {Promise<Producto[]>}
+ */
+
+const obtenerElementosRecomendados = async (limit = 4) => {
   const resultados = await obtenerTodosLosResultados('portatil');
-
-  console.log(resultados.slice(0, 4))
-
+  return resultados.slice(0, limit);
 };
 
 export default obtenerElementosRecomendados;
