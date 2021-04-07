@@ -58,7 +58,7 @@ const CardResultado = ({
               </Typography>
 
               <Typography noWrap variant="subtitle2" color="textSecondary">
-                {`$${precio} -${tienda}`}
+                {`$${precio} - ${tienda}`}
               </Typography>
             </Grid>
           </Grid>
