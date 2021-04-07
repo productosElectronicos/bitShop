@@ -112,3 +112,22 @@ export const obtenerResultadosMercadoLibre = (entrada) => new Promise(
     },
   ),
 );
+
+/**
+ * función para obtener productos más varatos de tu ultima palabra buscada
+ * @param {Object} entrada
+ * @param {String} entrada.texto
+ * @param {Number|Null} entrada.limit
+ * @returns {Promise<Producto[]>}
+ */
+export const obtenerElementosRecomendados = (entrada) => new Promise(
+  (resolve, reject) => Meteor.call(
+    'obtenerElementosRecomendados', entrada, (err, result) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(result);
+      }
+    },
+  ),
+);

@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 
 import {
   obtenerResultadosPorTienda, obtenerPalabrasBuscadas,
-  obtenerResultadosMercadoLibre,
+  obtenerResultadosMercadoLibre, obtenerElementosRecomendados,
 } from './helperDashboard.js';
 
 import CardGeneral from '../CardGeneral/CardGeneral.jsx';
@@ -18,6 +18,8 @@ const Dashboard = () => {
   const [listadoExito, setListadoExito] = useState([]);
   const [listadoFalabella, setListadoFalabella] = useState([]);
   const [listadoMercadoLibre, setListadoMercadoLibre] = useState([]);
+  const [listadoRecomendados, setListadoRecomendados] = useState([]);
+  const [listadoAmazon, setListadoAmazon] = useState([]);
 
   const obtenerProductosLinio = async () => {
     try {
@@ -74,9 +76,22 @@ const Dashboard = () => {
     }
   };
 
+  const obtenerResultadosRecomendados = async (texto) => {
+    try {
+      const resultadosRecomendados = await obtenerElementosRecomendados({
+        texto,
+      });
+
+      setListadoRecomendados(resultadosRecomendados);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     if (ultimaPalabraBuscada) {
       obtenerResultadoMercadoLibre(ultimaPalabraBuscada);
+      obtenerResultadosRecomendados(ultimaPalabraBuscada);
     }
   }, [ultimaPalabraBuscada]);
 
@@ -94,10 +109,10 @@ const Dashboard = () => {
       <br />
       <Grid container spacing={2}>
         <Grid item xs={12} md={4}>
-          <CardGeneral listaOfertas={[]} titulo="Basado en tu última búsqueda!" />
+          <CardGeneral listaOfertas={listadoRecomendados} titulo="Basado en tu última búsqueda!" />
         </Grid>
         <Grid item xs={12} md={4}>
-          <CardGeneral listaOfertas={[]} titulo="Ofertas Amazon Recomendadas para ti!" />
+          <CardGeneral listaOfertas={ultimaPalabraBuscada ? listadoAmazon : []} titulo="Ofertas Amazon Recomendadas para ti!" />
         </Grid>
         <Grid item xs={12} md={4}>
           <CardGeneral listaOfertas={listadoMercadoLibre} titulo="Ofertas Mercado Libre Recomendadas para ti!" />
