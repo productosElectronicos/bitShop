@@ -21,6 +21,17 @@ const Dashboard = () => {
   const [listadoRecomendados, setListadoRecomendados] = useState([]);
   const [listadoAmazon, setListadoAmazon] = useState([]);
 
+  const obtenerProductosAmazon = async () => {
+    try {
+      const datosAmazon = await obtenerResultadosPorTienda({
+        limit: 4,
+        metodo: 'obtenerResultadosAmazon',
+      });
+      setListadoAmazon(datosAmazon);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   const obtenerProductosLinio = async () => {
     try {
       const datosLinio = await obtenerResultadosPorTienda({
@@ -97,6 +108,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     obtenerUltimaPalabraBuscada();
+    obtenerProductosAmazon();
     obtenerProductosLinio();
     obtenerProductosExito();
     obtenerProductosFalabella();

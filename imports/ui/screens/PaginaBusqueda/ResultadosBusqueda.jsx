@@ -20,7 +20,7 @@ const ResultadosBusqueda = ({ resultados }) => (
       <Grid item xs={12} md={10}>
         <Grid container spacing={2}>
           {resultados.map((resultado) => (
-            <Grid item xs={12} md={3} key={resultado.nombreProducto}>
+            <Grid item xs={12} md={3} key={resultado.enlaceProducto}>
               <CardResultado {...resultado} />
             </Grid>
           ))}
