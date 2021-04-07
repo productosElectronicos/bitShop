@@ -37,7 +37,9 @@ const Buscador = () => {
     history.push(ruta);
   };
 
-  const alBuscar = () => {
+  const alBuscar = (event) => {
+    event.preventDefault();
+
     if (!busqueda) {
       enqueueSnackbar('Por favor ingrese una palabra para buscar', {
         variant: 'error',
@@ -63,33 +65,35 @@ const Buscador = () => {
   return (
     <ThemeProvider theme={themeSelectores}>
       <FormControl variant="outlined" fullWidth>
-        <InputLabel htmlFor="outlined-adornment-busqueda">
-          Busca tu producto aquí
-        </InputLabel>
-        <OutlinedInput
-          required
-          fullWidth
-          type="text"
-          id="outlined-adornment-busqueda"
-          value={busqueda}
-          autoFocus
-          onChange={(e) => setBusqueda(e.target.value)}
-          style={{ backgroundColor: '#ffffff' }}
-          endAdornment={(
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={alBuscar}
-                edge="end"
-                type="submit"
-                color="primary"
-              >
-                <Search />
-              </IconButton>
-            </InputAdornment>
+        <form onSubmit={alBuscar}>
+          <InputLabel htmlFor="outlined-adornment-busqueda">
+            Busca tu producto aquí
+          </InputLabel>
+          <OutlinedInput
+            required
+            fullWidth
+            type="text"
+            id="outlined-adornment-busqueda"
+            value={busqueda}
+            autoFocus
+            onChange={(e) => setBusqueda(e.target.value)}
+            style={{ backgroundColor: '#ffffff' }}
+            endAdornment={(
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                // onClick={alBuscar}
+                  edge="end"
+                  type="submit"
+                  color="primary"
+                >
+                  <Search />
+                </IconButton>
+              </InputAdornment>
           )}
-          labelWidth={180}
-        />
+            labelWidth={180}
+          />
+        </form>
       </FormControl>
     </ThemeProvider>
   );
