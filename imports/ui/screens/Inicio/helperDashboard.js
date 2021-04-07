@@ -16,6 +16,14 @@ import { Meteor } from 'meteor/meteor';
 */
 
 /**
+ * @typedef Busqueda
+ * @property {String} _id id mongo del usuario
+ * @property {String} usuarioId id mongo del usuario
+ * @property {Date} fechaBusqueda fecha en que se consultó la búsqueda
+ * @property {String} busqueda busqueda realizada
+ */
+
+/**
  *
  * @typedef Producto
  * @property {String} nombreProducto
@@ -59,6 +67,62 @@ export const obtenerResultadosPorTienda = ({ limit, metodo }) => new Promise(
     metodo,
     { limit },
     (err, result) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(result);
+      }
+    },
+  ),
+);
+
+/**
+ * función para obtener las n últimas palabra buscadas
+ * @param {Number} limit
+ * @returns {Promise<Busqueda[]>} últimas n búsquedas realizadas
+ */
+export const obtenerPalabrasBuscadas = (limit) => new Promise(
+  (resolve, reject) => Meteor.call(
+    'obtenerPalabras', { limit }, (err, result) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(result);
+      }
+    },
+  ),
+);
+
+/**
+ * función para obtener las recomendaciones de mercadolibre
+ * @param {Object} entrada
+ * @param {Number} entrada.limit limite de resultados a presentar
+ * @param {String} entrada.texto texto a buscar
+ * @returns {Promise<Producto[]>}
+ */
+export const obtenerResultadosMercadoLibre = (entrada) => new Promise(
+  (resolve, reject) => Meteor.call(
+    'obtenerResultadosMercadoLibre', entrada,
+    (err, result) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(result);
+      }
+    },
+  ),
+);
+
+/**
+ * función para obtener productos más varatos de tu ultima palabra buscada
+ * @param {Object} entrada
+ * @param {String} entrada.texto
+ * @param {Number|Null} entrada.limit
+ * @returns {Promise<Producto[]>}
+ */
+export const obtenerElementosRecomendados = (entrada) => new Promise(
+  (resolve, reject) => Meteor.call(
+    'obtenerElementosRecomendados', entrada, (err, result) => {
       if (err) {
         reject(err);
       } else {
