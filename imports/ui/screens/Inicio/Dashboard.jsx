@@ -1,13 +1,23 @@
-import { Grid } from '@material-ui/core';
+/* eslint-disable no-console */
+import _ from 'lodash';
 
 import React, { useEffect, useState } from 'react';
+
+import Grid from '@material-ui/core/Grid';
+
+import {
+  obtenerResultadosPorTienda, obtenerPalabrasBuscadas,
+  obtenerResultadosMercadoLibre,
+} from './helperDashboard.js';
+
 import CardGeneral from '../CardGeneral/CardGeneral.jsx';
-import { obtenerResultadosPorTienda } from './helperDashboard.js';
 
 const Dashboard = () => {
+  const [ultimaPalabraBuscada, setUltimaPalabraBuscada] = useState('');
   const [listadoLinio, setListadoLinio] = useState([]);
   const [listadoExito, setListadoExito] = useState([]);
   const [listadoFalabella, setListadoFalabella] = useState([]);
+  const [listadoMercadoLibre, setListadoMercadoLibre] = useState([]);
 
   const obtenerProductosLinio = async () => {
     try {
@@ -42,12 +52,42 @@ const Dashboard = () => {
       console.error(error);
     }
   };
+
+  const obtenerUltimaPalabraBuscada = async() => {
+    const listadoUltimaPalabra = await obtenerPalabrasBuscadas(1);
+
+    if (!_.isEmpty(listadoUltimaPalabra)) {
+      setUltimaPalabraBuscada(listadoUltimaPalabra[0].busqueda);
+    }
+  };
+
+  const obtenerResultadoMercadoLibre = async (texto) => {
+    try {
+      const resultadosMercadoLibre = await obtenerResultadosMercadoLibre({
+        limit: 4,
+        texto,
+      });
+
+      setListadoMercadoLibre(resultadosMercadoLibre);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
+    if (ultimaPalabraBuscada) {
+      obtenerResultadoMercadoLibre(ultimaPalabraBuscada);
+    }
+  }, [ultimaPalabraBuscada]);
+
+  useEffect(() => {
+    obtenerUltimaPalabraBuscada();
     obtenerProductosLinio();
     obtenerProductosExito();
     obtenerProductosFalabella();
     return () => null;
   }, []);
+
   return (
 
     <>
@@ -60,7 +100,7 @@ const Dashboard = () => {
           <CardGeneral listaOfertas={[]} titulo="Ofertas Amazon Recomendadas para ti!" />
         </Grid>
         <Grid item xs={12} md={4}>
-          <CardGeneral listaOfertas={[]} titulo="Ofertas Mercado Libre Recomendadas para ti!" />
+          <CardGeneral listaOfertas={listadoMercadoLibre} titulo="Ofertas Mercado Libre Recomendadas para ti!" />
         </Grid>
         <Grid item xs={12} md={4}>
           <CardGeneral listaOfertas={listadoLinio} titulo="Ofertas Linio Recomendadas para ti!" />
