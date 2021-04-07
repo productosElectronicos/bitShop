@@ -112,19 +112,19 @@ const Dashboard = () => {
           <CardGeneral listaOfertas={listadoRecomendados} titulo="Basado en tu última búsqueda!" />
         </Grid>
         <Grid item xs={12} md={4}>
-          <CardGeneral listaOfertas={ultimaPalabraBuscada ? listadoAmazon : []} titulo="Ofertas Amazon Recomendadas para ti!" />
-        </Grid>
-        <Grid item xs={12} md={4}>
           <CardGeneral listaOfertas={listadoMercadoLibre} titulo="Ofertas Mercado Libre Recomendadas para ti!" />
         </Grid>
         <Grid item xs={12} md={4}>
-          <CardGeneral listaOfertas={listadoLinio} titulo="Ofertas Linio Recomendadas para ti!" />
+          <CardGeneral listaOfertas={ultimaPalabraBuscada ? listadoAmazon : []} titulo="Ofertas Amazon Recomendadas para ti!" />
         </Grid>
         <Grid item xs={12} md={4}>
-          <CardGeneral listaOfertas={listadoFalabella} titulo="Ofertas Falabella Recomendadas para ti!" />
+          <CardGeneral listaOfertas={ultimaPalabraBuscada ? listadoLinio : []} titulo="Ofertas Linio Recomendadas para ti!" />
         </Grid>
         <Grid item xs={12} md={4}>
-          <CardGeneral listaOfertas={listadoExito} titulo="Ofertas Exito Recomendadas para ti!" />
+          <CardGeneral listaOfertas={ultimaPalabraBuscada ? listadoFalabella : []} titulo="Ofertas Falabella Recomendadas para ti!" />
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <CardGeneral listaOfertas={ultimaPalabraBuscada ? listadoExito : []} titulo="Ofertas Exito Recomendadas para ti!" />
         </Grid>
 
       </Grid>
