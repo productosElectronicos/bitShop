@@ -19,8 +19,8 @@ import obtenerTodosLosResultados from '../buscador/obtenerTodosLosResultados';
  * @returns {Promise<Producto[]>}
  */
 
-const obtenerElementosRecomendados = async (limit = 4) => {
-  const resultados = await obtenerTodosLosResultados('portatil');
+const obtenerElementosRecomendados = async ({ limit = 4, texto }) => {
+  const resultados = await obtenerTodosLosResultados(texto);
   return resultados.slice(0, limit);
 };
 

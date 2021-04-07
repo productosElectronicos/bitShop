@@ -9,9 +9,10 @@ const obtenerElementosRecomendadosMetodo = new ValidatedMethod({
   name: 'obtenerElementosRecomendados',
   validate: new SimpleSchema({
     limit: { type: Number, optional: true },
+    texto: { type: String },
   }).validator(),
-  run({ limit }) {
-    const resultados = MPromise.await(obtenerElementosRecomendados(limit));
+  run({ limit, texto }) {
+    const resultados = MPromise.await(obtenerElementosRecomendados({ limit, texto }));
 
     return resultados;
   },
