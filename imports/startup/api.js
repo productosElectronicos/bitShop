@@ -7,3 +7,4 @@ import '../api/buscador';
 import '../api/elementosVistos';
 import '../api/palabrasBuscadas';
 import '../api/recomendadosIniciales';
+import '../api/usuarios';

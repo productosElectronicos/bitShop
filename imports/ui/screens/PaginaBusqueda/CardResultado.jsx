@@ -58,7 +58,7 @@ const CardResultado = ({
               </Typography>
 
               <Typography noWrap variant="subtitle2" color="textSecondary">
-                {`${tienda} - $${precio}`}
+                {`$${precio} -${tienda}`}
               </Typography>
             </Grid>
           </Grid>
@@ -67,7 +67,7 @@ const CardResultado = ({
         <CardActions style={{ float: 'right' }}>
           <div style={{ float: 'left !important' }}>
             <Link href={enlaceProducto} target="_blank" onClick={() => crearElementoVisto(producto)}>
-              {`Ir a ${tienda}`}
+              Ir a tienda
             </Link>
           </div>
 
