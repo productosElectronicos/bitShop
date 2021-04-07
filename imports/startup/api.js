@@ -5,4 +5,5 @@ import '../api/exito';
 import '../api/mercadoLibre';
 import '../api/buscador';
 import '../api/elementosVistos';
+import '../api/palabrasBuscadas';
 import '../api/recomendadosIniciales';
