@@ -2,6 +2,7 @@ import _ from 'lodash';
 
 import BlueBird from 'bluebird';
 
+import obtenerResultadosAmazon from '../amazon/obtenerResultadosAmazon';
 import obtenerResultadosLinio from '../linio/obtenerResultadosLinio';
 import obtenerResultadosFalabella from '../falabella/obtenerResultadosFalabella';
 import obtenerResultadosExito from '../exito/obtenerResultadosExito';
@@ -32,7 +33,7 @@ const filtrarPorTexto = ({ productos = [], texto }) => {
   const filtro = productos
     .filter(
       (producto) => regexTexto.test(producto.nombreProducto.toLowerCase().trim())
-      || regexTexto.test(producto.descripcionProducto.toLowerCase().trim()),
+        || regexTexto.test(producto.descripcionProducto.toLowerCase().trim()),
     );
 
   return filtro;
@@ -46,6 +47,10 @@ const filtrarPorTexto = ({ productos = [], texto }) => {
 const obtenerTodosLosResultados = async (texto) => {
   // obtenemos todos los resultados paralelamente
   const allResultados = BlueBird.props({
+    resultadosAmazon: filtrarPorTexto({
+      productos: obtenerResultadosAmazon(),
+      texto,
+    }),
     resultadosLinio: filtrarPorTexto({
       productos: obtenerResultadosLinio(),
       texto,
@@ -63,11 +68,12 @@ const obtenerTodosLosResultados = async (texto) => {
   });
 
   const {
-    resultadosLinio, resultadosFalabella, resultadosExito,
-    resultadosMercadoLibre,
+    resultadosAmazon, resultadosLinio, resultadosFalabella,
+    resultadosExito, resultadosMercadoLibre,
   } = await allResultados;
 
   const totalResultados = _.concat(
+    resultadosAmazon,
     resultadosLinio,
     resultadosFalabella,
     resultadosExito,
