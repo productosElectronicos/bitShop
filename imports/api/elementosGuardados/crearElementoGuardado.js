@@ -22,12 +22,13 @@ import ElementosGuardados from '../../collections/elementosGuardados';
 
 const crearElementoGuardado = ({ producto, usuarioId }) => {
   const elementoGuardado = ElementosGuardados.upsert({
-    url: producto.enlaceProducto,
     usuarioId,
+    url: producto.enlaceProducto,
   }, {
     $set: {
       ...producto,
       usuarioId,
+      fechaGuardado: new Date(),
     },
   });
 
