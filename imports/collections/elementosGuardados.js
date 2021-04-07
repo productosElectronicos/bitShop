@@ -5,7 +5,7 @@ const ElementosGuardados = new Mongo.Collection('elementosGuardados');
 
 ElementosGuardados.indexes = [
   { index: { usuarioId: 1 } },
-  { index: { productoId: 1 } },
+  { index: { url: 1 } },
 ];
 
 export default ElementosGuardados;
