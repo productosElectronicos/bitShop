@@ -220,7 +220,7 @@ const Perfil = () => {
               </Typography>
               <hr />
               <Box height={290}>
-                {_.isEmpty(elementosVistos)
+                {_.isEmpty(palabras)
                   ? (
                     <Grid item xs={12}>
                       <SinResultados texto="Sin Búsquedas &#128577;" />
