@@ -50,7 +50,6 @@ const CardResultado = ({
           title={`${nombreProducto} en ${localizacion} ${esUsado ? 'Usado' : ''}`}
         />
         <CardContent>
-          <hr style={{ height: '1px' }} />
           <Grid container>
             <Grid item xs={12}>
               <Typography noWrap variant="h5" component="h2">
@@ -60,6 +59,17 @@ const CardResultado = ({
               <Typography noWrap variant="subtitle2" color="textSecondary">
                 {`${tienda} - $${precio}`}
               </Typography>
+
+              <hr style={{ height: '1px' }} />
+
+            </Grid>
+            <Grid item xs={12}>
+              <div style={{ height: '6vw', overflowY: 'auto' }}>
+
+                <Typography variant="body2" component="p">
+                  {descripcionProducto}
+                </Typography>
+              </div>
             </Grid>
           </Grid>
 

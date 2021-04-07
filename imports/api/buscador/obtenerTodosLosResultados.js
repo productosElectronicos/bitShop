@@ -5,7 +5,6 @@ import BlueBird from 'bluebird';
 import obtenerResultadosLinio from '../linio/obtenerResultadosLinio';
 import obtenerResultadosFalabella from '../falabella/obtenerResultadosFalabella';
 import obtenerResultadosExito from '../exito/obtenerResultadosExito';
-import obtenerResultadosMercadoLibre from '../mercadoLibre/obtenerResultadosMercadoLibre';
 
 /**
  *
@@ -58,21 +57,12 @@ const obtenerTodosLosResultados = async (texto) => {
       productos: obtenerResultadosExito(),
       texto,
     }),
-    resultadosMercadoLibre: obtenerResultadosMercadoLibre({ texto }),
 
   });
 
-  const {
-    resultadosLinio, resultadosFalabella, resultadosExito,
-    resultadosMercadoLibre,
-  } = await allResultados;
+  const { resultadosLinio, resultadosFalabella, resultadosExito } = await allResultados;
 
-  const totalResultados = _.concat(
-    resultadosLinio,
-    resultadosFalabella,
-    resultadosExito,
-    resultadosMercadoLibre,
-  );
+  const totalResultados = _.concat(resultadosLinio, resultadosFalabella, resultadosExito);
 
   const totalResultadosOrdenados = _.orderBy(
     totalResultados,
