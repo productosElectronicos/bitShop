@@ -15,6 +15,7 @@ import CardGeneral from '../CardGeneral/CardGeneral.jsx';
 const Dashboard = () => {
   const [ultimaPalabraBuscada, setUltimaPalabraBuscada] = useState('');
   const [listadoLinio, setListadoLinio] = useState([]);
+  const [listadoOlx, setListadoOlx] = useState([]);
   const [listadoExito, setListadoExito] = useState([]);
   const [listadoFalabella, setListadoFalabella] = useState([]);
   const [listadoMercadoLibre, setListadoMercadoLibre] = useState([]);
@@ -28,6 +29,17 @@ const Dashboard = () => {
         metodo: 'obtenerResultadosAmazon',
       });
       setListadoAmazon(datosAmazon);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const obtenerProductosOlx = async () => {
+    try {
+      const datosOlx = await obtenerResultadosPorTienda({
+        limit: 4,
+        metodo: 'obtenerResultadosOlx',
+      });
+      setListadoOlx(datosOlx);
     } catch (error) {
       console.error(error);
     }
@@ -109,6 +121,7 @@ const Dashboard = () => {
   useEffect(() => {
     obtenerUltimaPalabraBuscada();
     obtenerProductosAmazon();
+    obtenerProductosOlx();
     obtenerProductosLinio();
     obtenerProductosExito();
     obtenerProductosFalabella();
@@ -137,6 +150,9 @@ const Dashboard = () => {
         </Grid>
         <Grid item xs={12} md={4}>
           <CardGeneral listaOfertas={ultimaPalabraBuscada ? listadoExito : []} titulo="Ofertas Exito Recomendadas para ti!" />
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <CardGeneral listaOfertas={ultimaPalabraBuscada ? listadoOlx : []} titulo="Ofertas Olx Recomendadas para ti!" />
         </Grid>
 
       </Grid>

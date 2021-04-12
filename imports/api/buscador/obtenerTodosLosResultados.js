@@ -7,6 +7,7 @@ import obtenerResultadosLinio from '../linio/obtenerResultadosLinio';
 import obtenerResultadosFalabella from '../falabella/obtenerResultadosFalabella';
 import obtenerResultadosExito from '../exito/obtenerResultadosExito';
 import obtenerResultadosMercadoLibre from '../mercadoLibre/obtenerResultadosMercadoLibre';
+import obtenerResultadosOlx from '../olx/obtenerResultadosOlx';
 
 /**
  *
@@ -63,13 +64,17 @@ const obtenerTodosLosResultados = async (texto) => {
       productos: obtenerResultadosExito(),
       texto,
     }),
+    resultadosOlx: filtrarPorTexto({
+      productos: obtenerResultadosOlx(),
+      texto,
+    }),
     resultadosMercadoLibre: obtenerResultadosMercadoLibre({ texto }),
 
   });
 
   const {
     resultadosAmazon, resultadosLinio, resultadosFalabella,
-    resultadosExito, resultadosMercadoLibre,
+    resultadosExito, resultadosMercadoLibre, resultadosOlx,
   } = await allResultados;
 
   const totalResultados = _.concat(
@@ -78,6 +83,7 @@ const obtenerTodosLosResultados = async (texto) => {
     resultadosFalabella,
     resultadosExito,
     resultadosMercadoLibre,
+    resultadosOlx,
   );
 
   const totalResultadosOrdenados = _.orderBy(
