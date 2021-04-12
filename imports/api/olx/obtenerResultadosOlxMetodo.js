@@ -2,18 +2,18 @@ import { ValidatedMethod } from 'meteor/mdg:validated-method';
 
 import SimpleSchema from 'simpl-schema';
 
-import obtenerResultadosAmazon from './obtenerResultadosAmazon';
+import obtenerResultadosOlx from './obtenerResultadosOlx';
 
-const obtenerResultadosAmazonMetodo = new ValidatedMethod({
-  name: 'obtenerResultadosAmazon',
+const obtenerResultadosOlxMetodo = new ValidatedMethod({
+  name: 'obtenerResultadosOlx',
   validate: new SimpleSchema({
     limit: { type: Number },
   }).validator(),
   run({ limit }) {
-    const resultados = obtenerResultadosAmazon(limit);
+    const resultados = obtenerResultadosOlx(limit);
 
     return resultados;
   },
 });
 
-export default obtenerResultadosAmazonMetodo;
+export default obtenerResultadosOlxMetodo;
