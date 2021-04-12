@@ -28,7 +28,7 @@ const CardGeneral = ({ titulo, listaOfertas }) => (
             ? <SinResultados texto="No se encontró recomendaciones &#128577;" />
 
             : listaOfertas.map((oferta) => (
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={6} key={oferta.nombreProducto}>
                 <CardResultado {...oferta} />
               </Grid>
             ))}
