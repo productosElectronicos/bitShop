@@ -59,7 +59,8 @@ export const obtenerElementosVistos = (entrada) => new Promise(
  * función para obtener las recomendaciones por tienda
  * @param {Object} entrada
  * @param {Number} entrada.limit limite de resultados a presentar
- * @param {('obtenerResultadosFalabella'|'obtenerResultadosLinio'|'obtenerResultadosExito'|'obtenerResultadosAmazon')} entrada.metodo limite de resultados a presentar
+ * @param {('obtenerResultadosFalabella'|'obtenerResultadosLinio'|'obtenerResultadosExito'|
+ *         'obtenerResultadosAmazon'|'obtenerResultadosOlx')} entrada.metodo limite de resultados a presentar
  * @returns {Promise<Producto[]>}
  */
 export const obtenerResultadosPorTienda = ({ limit, metodo }) => new Promise(
