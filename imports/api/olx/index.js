@@ -1,5 +1,5 @@
-import obtenerResultadosAmazonMetodo from './obtenerResultadosAmazonMetodo';
+import obtenerResultadosOlxMetodo from './obtenerResultadosOlxMetodo';
 
 export default {
-  obtenerResultadosAmazonMetodo,
+  obtenerResultadosOlxMetodo,
 };
