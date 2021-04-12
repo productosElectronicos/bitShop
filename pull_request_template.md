@@ -8,8 +8,8 @@
 
 ## Tipo de cambio
 Marcar con x
-* [] Servidor
-* [] Cliente
+* [ ] Servidor
+* [ ] Cliente
 
 ## Reviewers
 * @jumarinr
