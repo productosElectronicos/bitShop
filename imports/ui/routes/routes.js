@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { lazy } from 'react';
 
 const Dashboard = lazy(() => import('../screens/Inicio/Dashboard'));
@@ -9,7 +10,7 @@ const PaginaBusqueda = lazy(() => import('../screens/PaginaBusqueda/PaginaBusque
 
 export const ROUTES = [
   {
-    path: '/',
+    path: '/inicio-sesion',
     component: InicioSesion,
     isPublic: true,
   },
@@ -19,9 +20,8 @@ export const ROUTES = [
     isPublic: true,
   },
   {
-    path: '/inicio',
+    path: '/',
     component: Dashboard,
-    isPublic: false,
   },
   {
     path: '/perfil',
@@ -36,10 +36,11 @@ export const ROUTES = [
   {
     path: '/busqueda/:id',
     component: PaginaBusqueda,
-    isPublic: false,
   },
 ];
 
 export const getPublicRoutes = () => ROUTES.filter((route) => route.isPublic);
 
 export const getPrivateRoutes = () => ROUTES.filter((route) => !route.isPublic);
+
+export const getCommonRoutes = () => ROUTES.filter((route) => _.isNil(route.isPublic));

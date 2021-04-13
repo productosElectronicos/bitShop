@@ -1,4 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { useTracker } from 'meteor/react-meteor-data';
+import { Meteor } from 'meteor/meteor';
 import { withStyles } from '@material-ui/core/styles';
 
 import React from 'react';
@@ -18,69 +20,85 @@ import Tiendas from './Tiendas.jsx';
 import InfoGeneral from './InfoGeneral.jsx';
 import Ofertas from './Ofertas.jsx';
 
-const Navegacion = ({ children, classes, ...props }) => (
-  <>
-    <Grid container>
-      <Grid item xs={12}>
-        <Grid container spacing={1}>
+const Navegacion = ({ children, classes, ...props }) => {
+  // obtenemos el id mongo del usuario autenticado
 
-          {/* Icon */}
-          <Grid item xs={12} md={1}>
-            <AvatarImagen classes={classes} />
-          </Grid>
+  const { estaConectadoUnUsuario } = useTracker(() => {
+    // verificamos el usuario
+    const usuarioId = Meteor.userId();
 
-          {/* Buscador */}
-          <Grid item xs={12} md={7}>
+    // agregamos un booleano que define el cambio
+    const estaConectado = !!usuarioId;
 
-            <Grid container spacing={2}>
+    return {
+      estaConectadoUnUsuario: estaConectado,
+    };
+  });
 
-              <Grid item xs={12}>
+  return (
+    <>
+      <Grid container>
+        <Grid item xs={12}>
+          <Grid container spacing={1}>
 
-                {/* Categorias */}
-                <Grid container spacing={2}>
-                  <Grid item xs={12} md={3}>
-                    <Categorias />
-                  </Grid>
+            {/* Icon */}
+            <Grid item xs={12} md={1}>
+              <AvatarImagen classes={classes} />
+            </Grid>
 
-                  {/* Buscador */}
-                  <Grid item xs={12} md={9}>
-                    <Buscador />
+            {/* Buscador */}
+            <Grid item xs={12} md={7}>
+
+              <Grid container spacing={2}>
+
+                <Grid item xs={12}>
+
+                  {/* Categorias */}
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} md={3}>
+                      <Categorias />
+                    </Grid>
+
+                    {/* Buscador */}
+                    <Grid item xs={12} md={9}>
+                      <Buscador />
+                    </Grid>
                   </Grid>
                 </Grid>
-              </Grid>
 
-              <Grid item xs={12}>
-                <Tiendas />
+                <Grid item xs={12}>
+                  <Tiendas />
+                </Grid>
+
               </Grid>
 
             </Grid>
 
+            {/* Ofertas */}
+            <Grid item xs={12} md={3} style={{ marginTop: '-1%' }}>
+              <Ofertas />
+            </Grid>
+
+            {/* Info General */}
+            <Grid item xs={12} md={1}>
+              <InfoGeneral estaConectadoUnUsuario={estaConectadoUnUsuario} />
+            </Grid>
+            <Grid item xs={12}>
+              <Divider />
+            </Grid>
           </Grid>
 
-          {/* Ofertas */}
-          <Grid item xs={12} md={3} style={{ marginTop: '-1%' }}>
-            <Ofertas />
-          </Grid>
-
-          {/* Info General */}
-          <Grid item xs={12} md={1}>
-            <InfoGeneral />
-          </Grid>
-          <Grid item xs={12}>
-            <Divider />
-          </Grid>
         </Grid>
 
-      </Grid>
+        <Grid item xs={12}>
+          {children}
+        </Grid>
 
-      <Grid item xs={12}>
-        {children}
+        <RegresarComponente {...props} />
       </Grid>
-
-      <RegresarComponente {...props} />
-    </Grid>
-  </>
-);
+    </>
+  );
+};
 
 Navegacion.propTypes = {
   children: PropTypes.node.isRequired,
