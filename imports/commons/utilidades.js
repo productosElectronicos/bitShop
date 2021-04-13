@@ -16,3 +16,9 @@ export const transformarTexto = ({
  * @returns {String}
  */
 export const tranformarNumeroAString = (numero) => numero.toLocaleString('es-CO');
+
+/**
+ * @param {String} texto
+ * @returns {String}
+ */
+export const removerAcentos = (texto) => texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
