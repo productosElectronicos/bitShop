@@ -13,7 +13,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 // material ui icons
 import Search from '@material-ui/icons/Search';
 
-import { transformarTexto } from '../../../commons/utilidades.js';
+import { removerAcentos, transformarTexto } from '../../../commons/utilidades.js';
 
 import themeSelectores from '../../theme/themeSelectores.js';
 
@@ -29,11 +29,12 @@ const Buscador = () => {
    * @param {String} texto
    */
   const redireccionABuscar = (texto) => {
-    const ruta = transformarTexto({
+    let ruta = transformarTexto({
       nuevoSeparador: '+',
       separador: ' ',
       texto,
     });
+    ruta = removerAcentos(ruta);
     history.push(ruta);
   };
 
