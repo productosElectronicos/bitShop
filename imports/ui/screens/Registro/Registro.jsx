@@ -137,7 +137,7 @@ const Registro = ({ classes }) => {
               <Grid container>
                 <Grid item xs={12}>
                   <div className={classes.textItemAlign}>
-                    <Link href="/" variant="body2">
+                    <Link href="/inicio-sesion" variant="body2">
                       ¿Tienes una cuenta? Ingresa aqui ahora!
                     </Link>
                   </div>

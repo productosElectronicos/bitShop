@@ -13,7 +13,7 @@ const PublicComponent = ({ component: Component, ...restOfProps }) => (
     {...restOfProps}
     render={(props) => (
       Meteor.userId()
-        ? <Redirect to="/inicio" />
+        ? <Redirect to="/" />
         : <Component {...props} />
     )}
   />
