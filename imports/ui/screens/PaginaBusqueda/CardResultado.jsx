@@ -1,3 +1,5 @@
+import { Meteor } from 'meteor/meteor';
+import { useTracker } from 'meteor/react-meteor-data';
 import { withStyles } from '@material-ui/core/styles';
 
 import React from 'react';
@@ -40,6 +42,18 @@ const CardResultado = ({
     enlaceProducto,
   };
 
+  const { estaConectadoUnUsuario } = useTracker(() => {
+    // verificamos el usuario
+    const usuarioId = Meteor.userId();
+
+    // agregamos un booleano que define el cambio
+    const estaConectado = !!usuarioId;
+
+    return {
+      estaConectadoUnUsuario: estaConectado,
+    };
+  });
+
   return (
     <>
       <Card>
@@ -66,7 +80,11 @@ const CardResultado = ({
         </CardContent>
         <CardActions style={{ float: 'right' }}>
           <div style={{ float: 'left !important' }}>
-            <Link href={enlaceProducto} target="_blank" onClick={() => crearElementoVisto(producto)}>
+            <Link
+              href={enlaceProducto}
+              target="_blank"
+              onClick={() => (estaConectadoUnUsuario ? crearElementoVisto(producto) : null)}
+            >
               Ir a tienda
             </Link>
           </div>
@@ -78,9 +96,13 @@ const CardResultado = ({
             <IconButton size="small" color="primary">
               <Share />
             </IconButton>
-            <IconButton size="small" color="primary">
-              <Save />
-            </IconButton>
+            {estaConectadoUnUsuario
+              ? (
+                <IconButton size="small" color="primary">
+                  <Save />
+                </IconButton>
+              )
+              : null}
           </div>
 
         </CardActions>
