@@ -8,6 +8,7 @@ import obtenerResultadosFalabella from '../falabella/obtenerResultadosFalabella'
 import obtenerResultadosExito from '../exito/obtenerResultadosExito';
 import obtenerResultadosMercadoLibre from '../mercadoLibre/obtenerResultadosMercadoLibre';
 import obtenerResultadosOlx from '../olx/obtenerResultadosOlx';
+import { removerAcentos } from '../../commons/utilidades';
 
 /**
  *
@@ -33,7 +34,7 @@ const filtrarPorTexto = ({ productos = [], texto }) => {
 
   const filtro = productos
     .filter(
-      (producto) => regexTexto.test(producto.nombreProducto.toLowerCase().trim())
+      (producto) => regexTexto.test(removerAcentos(producto.nombreProducto.toLowerCase().trim()))
         || regexTexto.test(producto.descripcionProducto.toLowerCase().trim()),
     );
 
