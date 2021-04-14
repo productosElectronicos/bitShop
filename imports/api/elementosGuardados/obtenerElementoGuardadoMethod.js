@@ -1,8 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import SimpleSchema from 'simpl-schema';
-
-import obtenerElementoGuardado from './actualizarElementoGuardado';
+import obtenerElementoGuardado from './obtenerElementoGuardado';
 
 const obtenerElementoGuardadoMethod = new ValidatedMethod({
   name: 'obtenerElementoGuardado',
@@ -24,13 +23,11 @@ const obtenerElementoGuardadoMethod = new ValidatedMethod({
   }) {
     const { _id: usuarioId } = Meteor.user();
 
-    const elementoGuardado = obtenerElementoGuardado({
+    return obtenerElementoGuardado({
       sort,
       limit,
       usuarioId,
     });
-
-    return elementoGuardado;
   },
 });
 

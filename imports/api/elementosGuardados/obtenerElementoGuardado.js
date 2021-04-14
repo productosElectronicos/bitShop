@@ -23,13 +23,13 @@ import ElementosGuardados from '../../collections/elementosGuardados';
  * @returns {Producto[]}
  */
 
-const obtenerElementoGuardado = ({ usuarioId, limit = 10, sort = { fechaGuardado: -1 } }) => {
-  const elementosGuardados = ElementosGuardados.find({ usuarioId }, {
-    limit,
-    sort,
-  }).fetch();
-
-  return elementosGuardados;
-};
+const obtenerElementoGuardado = ({
+  usuarioId,
+  limit = 10,
+  sort = { fechaGuardado: -1 },
+}) => ElementosGuardados.find({ usuarioId }, {
+  limit,
+  sort,
+}).fetch();
 
 export default obtenerElementoGuardado;

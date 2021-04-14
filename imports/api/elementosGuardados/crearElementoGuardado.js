@@ -20,19 +20,15 @@ import ElementosGuardados from '../../collections/elementosGuardados';
  * @param {String} entrada.usuarioId id del usuario autenticado
  */
 
-const crearElementoGuardado = ({ producto, usuarioId }) => {
-  const elementoGuardado = ElementosGuardados.upsert({
+const crearElementoGuardado = ({ producto, usuarioId }) => ElementosGuardados.upsert({
+  usuarioId,
+  url: producto.enlaceProducto,
+}, {
+  $set: {
+    ...producto,
     usuarioId,
-    url: producto.enlaceProducto,
-  }, {
-    $set: {
-      ...producto,
-      usuarioId,
-      fechaGuardado: new Date(),
-    },
-  });
-
-  return elementoGuardado;
-};
+    fechaGuardado: new Date(),
+  },
+});
 
 export default crearElementoGuardado;
