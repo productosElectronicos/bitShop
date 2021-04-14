@@ -20,7 +20,6 @@ const TIENDAS_DISPONIBLES = [
   'Linio',
   'Exito',
   'Falabella',
-  'Dondo',
 ];
 
 const Tiendas = () => (

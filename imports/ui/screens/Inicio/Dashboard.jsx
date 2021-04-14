@@ -129,9 +129,7 @@ const Dashboard = () => {
   }, []);
 
   return (
-
     <>
-      <br />
       <Grid container spacing={2}>
         <Grid item xs={12} md={4}>
           <CardGeneral listaOfertas={listadoRecomendados} titulo="Basado en tu última búsqueda!" />
@@ -154,9 +152,7 @@ const Dashboard = () => {
         <Grid item xs={12} md={4}>
           <CardGeneral listaOfertas={ultimaPalabraBuscada ? listadoOlx : []} titulo="Ofertas Olx Recomendadas para ti!" />
         </Grid>
-
       </Grid>
-
     </>
   );
 };
