@@ -1,0 +1,125 @@
+[
+  {
+    "label": "computador de mesa",
+    "value": "computador de mesa",
+    "categories": [
+      "memoria ram",
+      "procesador",
+      "motherboard",
+      "fuente de poder",
+      "tarjeta grafica",
+      "chasis",
+      "coolers",
+      "disco duro",
+      "ssd",
+      "hdd",
+      "m.2",
+      "nvme",
+      "nvme m.2",
+      "pci",
+      "vga",
+      "hdmi",
+      "sata",
+      "tarjeta inalambrica",
+      "tarjeta de audio",
+      "mouse",
+      "teclado",
+      "monitor",
+      "parlantes pc",
+      "windows 8",
+      "windows 10"
+    ]
+  },
+  {
+    "label": "computador portatil",
+    "value": "computador portatil",
+    "categories": [
+      "memoria ram sodimm",
+      "mouse",
+      "teclado",
+      "disco de estado solido",
+      "cargador de portatil",
+      "windows 8",
+      "windows 10",
+      "parlantes pc",
+      "base refrigerante portatil"
+    ]
+  },
+  {
+    "label": "consola",
+    "value": "consola",
+    "categories": [
+      "xbox",
+      "playstation",
+      "nintendo"
+    ]
+  },
+  {
+    "label": "xbox",
+    "value": "xbox",
+    "categories": [
+      "xbox clasica",
+      "xbox 360",
+      "xbox 360 slim",
+      "xbox 360 elite",
+      "xbox one",
+      "xbox one slim",
+      "xbox one x",
+      "xbox one slim edicion digital",
+      "xbox series x",
+      "xbox series s"
+    ]
+  },
+  {
+    "label": "playstation",
+    "value": "playstation",
+    "categories": [
+      "playstation 1",
+      "pocketstation",
+      "psone",
+      "playstation 2",
+      "playstation 2 slim",
+      "psp",
+      "playstation 3",
+      "psp slim & lite",
+      "psp 3000",
+      "playstation 3",
+      "playstation 3 slim",
+      "psp go",
+      "psp e1000",
+      "playstation 3 super slim",
+      "ps vita",
+      "playstation 4",
+      "ps vita slim",
+      "playstation 4 slim",
+      "playstation 4 pro",
+      "playstation 5",
+      "playstation 5 edicion digital"
+    ]
+  },
+  {
+    "label": "nintendo",
+    "value": "nintendo",
+    "categories": [
+      "nes",
+      "game boy",
+      "super nintendo",
+      "virtual boy",
+      "game boy color",
+      "game boy advance",
+      "panasonic q",
+      "game boy advance sp",
+      "nintendo ds",
+      "nintendo ds lite",
+      "wii",
+      "nintendo 3ds",
+      "wii mini",
+      "nintendo 3ds xl",
+      "wii u",
+      "nintendo 2ds",
+      "new nintendo 3ds",
+      "new classic edition",
+      "super nintendo classic edition snes mini"
+    ]
+  }
+]
