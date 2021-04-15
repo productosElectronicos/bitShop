@@ -9,8 +9,6 @@ const crearElementoGuardadoMetodo = new ValidatedMethod({
   validate: new SimpleSchema({
     producto: { type: Object },
     'producto.Id': { type: String },
-    'usuario.Id': { type: String },
-    fechaGuardado: { type: Date },
     'producto.enlaceProducto': { type: String },
   }).validator(),
   run({ producto }) {
