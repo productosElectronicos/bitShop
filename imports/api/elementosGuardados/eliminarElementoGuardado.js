@@ -16,7 +16,7 @@ import ElementosGuardados from '../../collections/elementosGuardados';
  */
 
 /**
- * función para obtener los elementos guardados del usuario
+ * función para eliminar el elementos guardado del usuario
  * @param {Object} entrada
  * @param {String} entrada.usuarioId id del usuario
  * @param {Number} entrada.productoId id del producto
