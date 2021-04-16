@@ -33,8 +33,16 @@ export const obtenerTodosLosResultados = (texto) => new Promise(
 );
 
 /**
+ *
+ * @typedef ProductoGuardado
+ * @property {String} productoId
+ * @property {String} tienda
+ * @property {String} enlaceProducto
+*/
+
+/**
  * función para crear elemento visto
- * @param {Resultado} producto
+ * @param {ProductoGuardado} producto
  * @returns {Promise<String>} id producto visto en db
  */
 export const crearElementoVisto = (producto) => new Promise(
