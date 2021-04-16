@@ -107,15 +107,17 @@ const CardResultado = ({
 };
 CardResultado.defaultProps = {
   productoId: null,
+  localizacion: null,
+  esUsado: null,
 };
 
 CardResultado.propTypes = {
   nombreProducto: PropTypes.string.isRequired,
   precioProducto: PropTypes.number.isRequired,
   productoId: PropTypes.string,
-  localizacion: PropTypes.string.isRequired,
+  localizacion: PropTypes.string,
   fotoProducto: PropTypes.string.isRequired,
-  esUsado: PropTypes.bool.isRequired,
+  esUsado: PropTypes.bool,
   tienda: PropTypes.string.isRequired,
   enlaceProducto: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,

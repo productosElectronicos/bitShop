@@ -75,7 +75,12 @@ const obtenerResultadosAmazon = async({ texto, limit = 10 }) => {
   const busqueda = `${URL_AMAZON_BUSQUEDA}${texto}`;
 
   // create a new browser instance
-  const browser = await Puppeteer.launch();
+  const browser = await Puppeteer.launch({
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+    ],
+  });
 
   // create a page inside the browser;
   const page = await browser.newPage();
