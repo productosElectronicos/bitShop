@@ -2,16 +2,11 @@ import ElementosGuardados from '../../collections/elementosGuardados';
 
 /**
  *objeto con datos de producto guardado
- * @typedef Producto
- * @property {String} nombreProducto
- * @property {Number} precioProducto
- * @property {String} descripcionProducto
- * @property {String} localizacion
- * @property {String} fotoProducto
- * @property {Boolean} esUsado
- * @property {String} tienda
+ * @typedef productoGuardado
+ * @property {String} usuarioId
  * @property {String} enlaceProducto
  * @property {Date} fechaGuardado
+ *
  */
 
 /**
@@ -19,7 +14,6 @@ import ElementosGuardados from '../../collections/elementosGuardados';
  * @param {Object} entrada
  * @param {Producto} entrada.producto objeto con los datos del producto
  * @param {String} entrada.usuarioId id del usuario autenticado
- * @returns {Producto[]}
  */
 
 const crearElementoGuardado = ({ producto, usuarioId }) => ElementosGuardados.upsert({
