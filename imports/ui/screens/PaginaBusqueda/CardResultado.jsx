@@ -25,19 +25,14 @@ import cardResultadoEstilo from './cardResultadoEstilo.jsx';
 import { crearElementoVisto } from './helperPaginaBusqueda.js';
 
 const CardResultado = ({
-  nombreProducto, precioProducto, descripcionProducto,
-  localizacion, fotoProducto, esUsado, tienda, enlaceProducto,
+  nombreProducto, precioProducto,
+  localizacion, fotoProducto, esUsado, productoId, tienda, enlaceProducto,
   classes,
 }) => {
-  const precio = tranformarNumeroAString(precioProducto);
+  const precio = tranformarNumeroAString(precioProducto || 0);
 
   const producto = {
-    nombreProducto,
-    precioProducto,
-    descripcionProducto,
-    localizacion,
-    fotoProducto,
-    esUsado,
+    productoId,
     tienda,
     enlaceProducto,
   };
@@ -110,11 +105,14 @@ const CardResultado = ({
     </>
   );
 };
+CardResultado.defaultProps = {
+  productoId: null,
+};
 
 CardResultado.propTypes = {
   nombreProducto: PropTypes.string.isRequired,
   precioProducto: PropTypes.number.isRequired,
-  descripcionProducto: PropTypes.string.isRequired,
+  productoId: PropTypes.string,
   localizacion: PropTypes.string.isRequired,
   fotoProducto: PropTypes.string.isRequired,
   esUsado: PropTypes.bool.isRequired,
