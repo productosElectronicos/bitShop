@@ -3,12 +3,7 @@ import ElementosVistos from '../../collections/elementosVistos';
 /**
  *
  * @typedef Producto
- * @property {String} nombreProducto
- * @property {Number} precioProducto
- * @property {String} descripcionProducto
- * @property {String} localizacion
- * @property {String} fotoProducto
- * @property {Boolean} esUsado
+ * @property {String} productoId
  * @property {String} tienda
  * @property {String} enlaceProducto
 */
