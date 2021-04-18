@@ -22,3 +22,11 @@ export const tranformarNumeroAString = (numero) => numero.toLocaleString('es-CO'
  * @returns {String}
  */
 export const removerAcentos = (texto) => texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+export const construirEmail = (htmlString, data) => Object
+  .keys(data)
+  .reduce((html, key) => {
+    const regexTexto = new RegExp(`{{${key}}}`, 'g');
+
+    return html.replace(regexTexto, data[key]);
+  }, htmlString);

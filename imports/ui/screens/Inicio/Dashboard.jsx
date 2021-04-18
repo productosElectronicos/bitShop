@@ -92,6 +92,10 @@ const Dashboard = () => {
 
     if (!_.isEmpty(listadoUltimaPalabra)) {
       setUltimaPalabraBuscada(listadoUltimaPalabra[0].busqueda);
+    } else {
+      setCargandoMercardoLibre(false);
+      setCargandoRecomendaciones(false);
+      setCargandoAmazon(false);
     }
   };
 
