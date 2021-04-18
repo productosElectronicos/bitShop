@@ -7,7 +7,7 @@ import { fetch } from 'meteor/fetch';
  * @default
  */
 // ESTO DEBE DE SER UNA VARIABLE DE ENTORNO
-const URL_BASE = 'http://localhost:4000';
+const URL_BASE = 'https://web-scraping-bitshop.herokuapp.com';
 
 /**
  *
