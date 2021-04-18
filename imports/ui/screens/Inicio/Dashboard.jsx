@@ -6,14 +6,16 @@ import React, { useEffect, useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 
 import {
-  obtenerResultadosPorTienda, obtenerPalabrasBuscadas,
-  obtenerResultadosMercadoLibre, obtenerElementosRecomendados,
+  obtenerResultadosDePrueba, obtenerPalabrasBuscadas,
+  obtenerResultadosPorTienda, obtenerElementosRecomendados,
 } from './helperDashboard.js';
 
 import CardGeneral from '../CardGeneral/CardGeneral.jsx';
 
 const Dashboard = () => {
   const [ultimaPalabraBuscada, setUltimaPalabraBuscada] = useState('');
+
+  // manejo de array de resultados
   const [listadoLinio, setListadoLinio] = useState([]);
   const [listadoOlx, setListadoOlx] = useState([]);
   const [listadoExito, setListadoExito] = useState([]);
@@ -22,9 +24,15 @@ const Dashboard = () => {
   const [listadoRecomendados, setListadoRecomendados] = useState([]);
   const [listadoAmazon, setListadoAmazon] = useState([]);
 
-  const obtenerProductosAmazon = async () => {
+  // cargando estados
+  const [cargandoMercardoLibre, setCargandoMercardoLibre] = useState(true);
+  const [cargandoAmazon, setCargandoAmazon] = useState(true);
+  const [cargandoRecomendaciones, setCargandoRecomendaciones] = useState(true);
+
+  const obtenerProductosAmazon = async (texto) => {
     try {
       const datosAmazon = await obtenerResultadosPorTienda({
+        texto,
         limit: 4,
         metodo: 'obtenerResultadosAmazon',
       });
@@ -32,10 +40,11 @@ const Dashboard = () => {
     } catch (error) {
       console.error(error);
     }
+    setCargandoAmazon(false);
   };
   const obtenerProductosOlx = async () => {
     try {
-      const datosOlx = await obtenerResultadosPorTienda({
+      const datosOlx = await obtenerResultadosDePrueba({
         limit: 4,
         metodo: 'obtenerResultadosOlx',
       });
@@ -46,7 +55,7 @@ const Dashboard = () => {
   };
   const obtenerProductosLinio = async () => {
     try {
-      const datosLinio = await obtenerResultadosPorTienda({
+      const datosLinio = await obtenerResultadosDePrueba({
         limit: 4,
         metodo: 'obtenerResultadosLinio',
       });
@@ -57,7 +66,7 @@ const Dashboard = () => {
   };
   const obtenerProductosExito = async () => {
     try {
-      const datosExito = await obtenerResultadosPorTienda({
+      const datosExito = await obtenerResultadosDePrueba({
         limit: 4,
         metodo: 'obtenerResultadosExito',
       });
@@ -68,7 +77,7 @@ const Dashboard = () => {
   };
   const obtenerProductosFalabella = async () => {
     try {
-      const datosFalabella = await obtenerResultadosPorTienda({
+      const datosFalabella = await obtenerResultadosDePrueba({
         limit: 4,
         metodo: 'obtenerResultadosFalabella',
       });
@@ -88,15 +97,17 @@ const Dashboard = () => {
 
   const obtenerResultadoMercadoLibre = async (texto) => {
     try {
-      const resultadosMercadoLibre = await obtenerResultadosMercadoLibre({
+      const resultadosMercadoLibre = await obtenerResultadosPorTienda({
         limit: 4,
         texto,
+        metodo: 'obtenerResultadosMercadoLibre',
       });
 
       setListadoMercadoLibre(resultadosMercadoLibre);
     } catch (error) {
       console.error(error);
     }
+    setCargandoMercardoLibre(false);
   };
 
   const obtenerResultadosRecomendados = async (texto) => {
@@ -109,18 +120,19 @@ const Dashboard = () => {
     } catch (error) {
       console.error(error);
     }
+    setCargandoRecomendaciones(false);
   };
 
   useEffect(() => {
     if (ultimaPalabraBuscada) {
       obtenerResultadoMercadoLibre(ultimaPalabraBuscada);
+      obtenerProductosAmazon(ultimaPalabraBuscada);
       obtenerResultadosRecomendados(ultimaPalabraBuscada);
     }
   }, [ultimaPalabraBuscada]);
 
   useEffect(() => {
     obtenerUltimaPalabraBuscada();
-    obtenerProductosAmazon();
     obtenerProductosOlx();
     obtenerProductosLinio();
     obtenerProductosExito();
@@ -132,25 +144,38 @@ const Dashboard = () => {
     <>
       <Grid container spacing={2}>
         <Grid item xs={12} md={4}>
-          <CardGeneral listaOfertas={listadoRecomendados} titulo="Basado en tu última búsqueda!" />
+          <CardGeneral
+            listaOfertas={ultimaPalabraBuscada ? listadoRecomendados : []}
+            titulo="Basado en tu última búsqueda!"
+            isLoading={cargandoRecomendaciones}
+          />
         </Grid>
         <Grid item xs={12} md={4}>
-          <CardGeneral listaOfertas={listadoMercadoLibre} titulo="Ofertas Mercado Libre Recomendadas para ti!" />
+          <CardGeneral
+            listaOfertas={ultimaPalabraBuscada ? listadoMercadoLibre : []}
+            titulo="Ofertas Mercado Libre Recomendadas para ti!"
+            isLoading={cargandoMercardoLibre}
+
+          />
         </Grid>
         <Grid item xs={12} md={4}>
-          <CardGeneral listaOfertas={ultimaPalabraBuscada ? listadoAmazon : []} titulo="Ofertas Amazon Recomendadas para ti!" />
+          <CardGeneral
+            listaOfertas={ultimaPalabraBuscada ? listadoAmazon : []}
+            titulo="Ofertas Amazon Recomendadas para ti!"
+            isLoading={cargandoAmazon}
+          />
         </Grid>
         <Grid item xs={12} md={4}>
-          <CardGeneral listaOfertas={ultimaPalabraBuscada ? listadoLinio : []} titulo="Ofertas Linio Recomendadas para ti!" />
+          <CardGeneral listaOfertas={listadoLinio} titulo="Ofertas Linio Recomendadas para ti!" />
         </Grid>
         <Grid item xs={12} md={4}>
-          <CardGeneral listaOfertas={ultimaPalabraBuscada ? listadoFalabella : []} titulo="Ofertas Falabella Recomendadas para ti!" />
+          <CardGeneral listaOfertas={listadoFalabella} titulo="Ofertas Falabella Recomendadas para ti!" />
         </Grid>
         <Grid item xs={12} md={4}>
-          <CardGeneral listaOfertas={ultimaPalabraBuscada ? listadoExito : []} titulo="Ofertas Exito Recomendadas para ti!" />
+          <CardGeneral listaOfertas={listadoExito} titulo="Ofertas Exito Recomendadas para ti!" />
         </Grid>
         <Grid item xs={12} md={4}>
-          <CardGeneral listaOfertas={ultimaPalabraBuscada ? listadoOlx : []} titulo="Ofertas Olx Recomendadas para ti!" />
+          <CardGeneral listaOfertas={listadoOlx} titulo="Ofertas Olx Recomendadas para ti!" />
         </Grid>
       </Grid>
     </>

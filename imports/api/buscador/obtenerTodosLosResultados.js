@@ -49,10 +49,8 @@ const filtrarPorTexto = ({ productos = [], texto }) => {
 const obtenerTodosLosResultados = async (texto) => {
   // obtenemos todos los resultados paralelamente
   const allResultados = BlueBird.props({
-    resultadosAmazon: filtrarPorTexto({
-      productos: obtenerResultadosAmazon(),
-      texto,
-    }),
+    resultadosAmazon: obtenerResultadosAmazon({ texto }),
+
     resultadosLinio: filtrarPorTexto({
       productos: obtenerResultadosLinio(),
       texto,
