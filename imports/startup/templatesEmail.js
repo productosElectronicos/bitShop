@@ -9,7 +9,7 @@ const enrrollment = (user, url) => {
   const template = Assets.getText('plantillasEmail/confirm-email.html');
 
   const emailhtml = construirEmail(template, {
-    name,
+    fullName: name,
     btnLink: url,
   });
 
@@ -17,12 +17,12 @@ const enrrollment = (user, url) => {
 };
 
 Object.assign(Accounts.urls, {
-  enrollAccount: (token) => Meteor.absoluteUrl(`verificar_cuenta/${token}`),
+  enrollAccount: (token) => Meteor.absoluteUrl(`verificar-cuenta/${token}`),
 });
 
 export default Object
   .assign(Accounts.emailTemplates, {
-    from: 'bitShop <postmaster@sandbox4d8e8e9bb7694a68b9c7cc49c9d1acdc.mailgun.org>',
+    from: 'bitShop <bitshopwebpage@gmail.com>',
     siteName: 'bit-shop.tech',
     enrollAccount: {
       subject: () => '¡BitShop te da la bienvenida!',

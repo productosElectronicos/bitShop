@@ -12,18 +12,20 @@ import CardContent from '@material-ui/core/CardContent';
 
 import paginaSuspendidaStyles from '../PaginaSuspendida/paginaSuspendidaStyles.jsx';
 
-const SinResultados = ({ texto, classes }) => (
+const SinResultados = ({ texto, classes, mostrarImagen }) => (
   <>
     <Container component="main" maxWidth="xs">
       <div className={classes.paper}>
         <Card>
           <CardContent className={classes.cardContent}>
-            <Avatar
-              className={classes.avatar}
-              alt="BitShop"
-              src="/images/BITSHOP.png"
-              variant="rounded"
-            />
+            {mostrarImagen ? (
+              <Avatar
+                className={classes.avatar}
+                alt="BitShop"
+                src="/images/BITSHOP.png"
+                variant="rounded"
+              />
+            ) : null}
             <Typography component="h1" variant="h6">
               {texto}
             </Typography>
@@ -34,8 +36,13 @@ const SinResultados = ({ texto, classes }) => (
   </>
 );
 
+SinResultados.defaultProps = {
+  mostrarImagen: true,
+};
+
 SinResultados.propTypes = {
   texto: PropTypes.string.isRequired,
+  mostrarImagen: PropTypes.bool,
   classes: PropTypes.object.isRequired,
 };
 
