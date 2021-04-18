@@ -63,7 +63,7 @@ export const obtenerElementosVistos = (entrada) => new Promise(
  *         'obtenerResultadosAmazon'|'obtenerResultadosOlx')} entrada.metodo limite de resultados a presentar
  * @returns {Promise<Producto[]>}
  */
-export const obtenerResultadosPorTienda = ({ limit, metodo }) => new Promise(
+export const obtenerResultadosDePrueba = ({ limit, metodo }) => new Promise(
   (resolve, reject) => Meteor.call(
     metodo,
     { limit },
@@ -99,11 +99,12 @@ export const obtenerPalabrasBuscadas = (limit) => new Promise(
  * @param {Object} entrada
  * @param {Number} entrada.limit limite de resultados a presentar
  * @param {String} entrada.texto texto a buscar
+ * @param {('obtenerResultadosAmazon'|'obtenerResultadosMercadoLibre')} entrada.metodo
  * @returns {Promise<Producto[]>}
  */
-export const obtenerResultadosMercadoLibre = (entrada) => new Promise(
+export const obtenerResultadosPorTienda = ({ limit, texto, metodo }) => new Promise(
   (resolve, reject) => Meteor.call(
-    'obtenerResultadosMercadoLibre', entrada,
+    metodo, { limit, texto },
     (err, result) => {
       if (err) {
         reject(err);

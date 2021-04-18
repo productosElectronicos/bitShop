@@ -34,6 +34,8 @@ const PaginaBusqueda = () => {
       setCargando(false);
     } catch (error) {
       console.error(error);
+      setResultados([]);
+      setCargando(false);
     }
   };
 
