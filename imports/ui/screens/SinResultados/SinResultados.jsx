@@ -41,7 +41,7 @@ SinResultados.defaultProps = {
 };
 
 SinResultados.propTypes = {
-  texto: PropTypes.string.isRequired,
+  texto: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
   mostrarImagen: PropTypes.bool,
   classes: PropTypes.object.isRequired,
 };

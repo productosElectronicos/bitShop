@@ -46,7 +46,7 @@ export const noEsValidoRegistrarse = ({
   }
 
   if (_.isEmpty(gustos)) {
-    return 'Debe ingresar una contraseña';
+    return 'Debe ingresar al menos un gusto';
   }
 
   return false;

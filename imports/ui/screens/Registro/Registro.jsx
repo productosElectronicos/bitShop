@@ -54,7 +54,7 @@ const Registro = ({ classes }) => {
         username,
       });
 
-      enqueueSnackbar('Usuario creado con éxito!', {
+      enqueueSnackbar('Usuario creado con éxito! 😊, por favor verifica tu correo para activar la cuenta', {
         variant: 'success',
       });
     } catch (error) {

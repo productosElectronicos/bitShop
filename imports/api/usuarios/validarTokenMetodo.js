@@ -10,15 +10,23 @@ const validarTokenMetodo = new ValidatedMethod({
     token: { type: String },
   }).validator(),
   run({ token }) {
-    const existeElToken = !Meteor.users.findOne({
+    const usuario = Meteor.users.findOne({
       'services.password.reset.token': token,
     }, {
       fields: {
         'services.password.reset.token': 1,
+        username: 1,
       },
     });
 
-    return existeElToken;
+    if (!usuario) {
+      throw new Meteor.Error('usuario_no_encontrado', 'Usuario no encontrado');
+    }
+
+    return {
+      existeElToken: !!usuario,
+      username: usuario.username,
+    };
   },
 });
 
