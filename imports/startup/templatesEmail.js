@@ -3,6 +3,12 @@ import { Accounts } from 'meteor/accounts-base';
 import { Meteor } from 'meteor/meteor';
 import { construirEmail } from '../commons/utilidades';
 
+/**
+ * Función para construir el body html del enrollment email
+ * @param {Object} user objeto del usuario en db
+ * @param {String} url enlace de activación
+ * @returns {String}
+ */
 const enrrollment = (user, url) => {
   const { profile: { name } } = user;
 

@@ -1,6 +1,10 @@
 import { Accounts } from 'meteor/accounts-base';
 import { Meteor } from 'meteor/meteor';
 
+/**
+ * función para enviar el correo de enrollamiento
+ * @param {String} email correo a enrollar
+ */
 const enrollmentEmail = (email) => {
   const user = Accounts.findUserByEmail(email);
 

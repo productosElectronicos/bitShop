@@ -2,7 +2,12 @@ import { Accounts } from 'meteor/accounts-base';
 import { Meteor } from 'meteor/meteor';
 
 /**
- *
+ * @typedef Entrada
+ * @property {String} token token del usuario
+ * @property {String} password contraseña del usuario
+ * @property {String} username correo del usuario
+*/
+/**
  * @typedef RetornoValidarToken
  * @property {String} username correo del usuario
  * @property {Boolean} existeElToken indica si existe o no el token
@@ -23,6 +28,11 @@ export const validarToken = (token) => new Promise((resolve, reject) => {
   });
 });
 
+/**
+ * función para activar la cuenta del usuario
+ * @param {Entrada} entrada
+ * @returns {Promise<>}
+ */
 export const activarCuenta = ({ token, password, username }) => new Promise(
   (resolve, reject) => Accounts.resetPassword(token, password,
     (err, result) => {

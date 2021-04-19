@@ -22,7 +22,7 @@
     "react-dom": "17.0.2",
     "react-responsive": "8.2.0",
     "react-router-dom": "5.2.0",
-    "react-select": "^4.3.0",
+    "react-select": "4.3.0",
     "react-spinners": "0.10.6",
     "simpl-schema": "1.10.2"
   },
@@ -33,7 +33,7 @@
     }
   },
   "devDependencies": {
-    "@meteorjs/eslint-config-meteor": "^1.0.5",
+    "@meteorjs/eslint-config-meteor": "1.0.5",
     "babel-eslint": "10.1.0",
     "eslint": "7.23.0",
     "eslint-config-airbnb": "18.2.1",
