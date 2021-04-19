@@ -133,6 +133,11 @@ const Perfil = () => {
                     {DateTime.fromJSDate(fechaCreacion).toRelativeCalendar()}
                   </b>
                 </Typography>
+                <Typography align="left" variant="subtitle1">
+                  <b>Gustos: </b>
+                  {' '}
+                  {(informacionUsuario?.gustos || []).map((gusto) => `${gusto}, `)}
+                </Typography>
               </Box>
             </CardContent>
           </Card>
