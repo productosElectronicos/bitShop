@@ -1,9 +1,11 @@
 /* eslint-disable no-undef */
+import _ from 'lodash';
+
 import regexUsadas from '../../../commons/regexUsadas';
 /**
  * @typedef Entrada
  * @property {String} username correo del usuario
- * @property {String} password contraseña
+ * @property {String[]} gustos gustos del usuario
  * @property {String} name nombre
  */
 
@@ -13,20 +15,19 @@ import regexUsadas from '../../../commons/regexUsadas';
  * @returns {Promise<String>} id mongo del usuario creado
  */
 export const crearUsuario = ({
-  username, password, name,
-}) => new Promise((resolve, reject) => Accounts.createUser({
-  username,
-  email: username,
-  password,
-  profile: { name },
-},
-(error, result) => {
-  if (error) {
-    reject(error);
-  } else {
-    resolve(result);
-  }
-}));
+  username, gustos, name,
+}) => new Promise((resolve, reject) => Meteor
+  .call('crearUsuario', {
+    username,
+    profile: { name, gustos },
+  },
+  (error, result) => {
+    if (error) {
+      reject(error);
+    } else {
+      resolve(result);
+    }
+  }));
 
 /**
  * función que retorna si es valido o no continuar con el registro.
@@ -34,7 +35,7 @@ export const crearUsuario = ({
  * @returns {String | void} mensaje de error del campo que no ingresó
  */
 export const noEsValidoRegistrarse = ({
-  username, password, name,
+  username, gustos, name,
 }) => {
   if (!name) {
     return 'Debe ingresar un nombre';
@@ -44,8 +45,8 @@ export const noEsValidoRegistrarse = ({
     return 'Debe ingresar un correo electronico valido';
   }
 
-  if (!password) {
-    return 'Debe ingresar una contraseña';
+  if (_.isEmpty(gustos)) {
+    return 'Debe ingresar al menos un gusto';
   }
 
   return false;

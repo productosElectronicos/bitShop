@@ -13,18 +13,22 @@ import CardContent from '@material-ui/core/CardContent';
 
 import paginaSuspendidaStyles from '../PaginaSuspendida/paginaSuspendidaStyles.jsx';
 
-const CargandoPagina = ({ texto, classes }) => (
+const CargandoPagina = ({ texto, classes, mostrarImagen }) => (
   <>
     <Container component="main" maxWidth="xs">
       <div className={classes.paper}>
         <Card>
           <CardContent className={classes.cardContent}>
-            <Avatar
-              className={classes.avatar}
-              alt="BitShop"
-              src="/images/BITSHOP.png"
-              variant="rounded"
-            />
+            {mostrarImagen
+              ? (
+                <Avatar
+                  className={classes.avatar}
+                  alt="BitShop"
+                  src="/images/BITSHOP.png"
+                  variant="rounded"
+                />
+              )
+              : null}
             <Typography variant="h6" style={{ textAlign: 'center' }}>
               {texto}
             </Typography>
@@ -36,9 +40,14 @@ const CargandoPagina = ({ texto, classes }) => (
   </>
 );
 
+CargandoPagina.defaultProps = {
+  mostrarImagen: true,
+};
+
 CargandoPagina.propTypes = {
   texto: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
+  mostrarImagen: PropTypes.bool,
 };
 
 export default withStyles(paginaSuspendidaStyles)(CargandoPagina);

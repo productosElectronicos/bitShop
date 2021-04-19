@@ -10,6 +10,7 @@ const obtenerInformacionUsuarioMetodo = new ValidatedMethod({
         createdAt: 1,
         profile: 1,
         username: 1,
+        gustos: 1,
       },
     });
 

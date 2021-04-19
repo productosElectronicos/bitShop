@@ -7,11 +7,17 @@ const Registro = lazy(() => import('../screens/Registro/Registro'));
 const Perfil = lazy(() => import('../screens/Perfil/Perfil'));
 const BitsGuardados = lazy(() => import('../screens/BitsGuardados/BitsGuardados'));
 const PaginaBusqueda = lazy(() => import('../screens/PaginaBusqueda/PaginaBusqueda'));
+const PaginaActivacion = lazy(() => import('../screens/PaginaActivacion/PaginaActivacion'));
 
 export const ROUTES = [
   {
     path: '/inicio-sesion',
     component: InicioSesion,
+    isPublic: true,
+  },
+  {
+    path: '/verificar-cuenta/:token',
+    component: PaginaActivacion,
     isPublic: true,
   },
   {
