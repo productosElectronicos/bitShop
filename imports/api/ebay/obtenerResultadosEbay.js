@@ -11,6 +11,7 @@ import tokenEbay from './generarToken';
  * @property {Number} precioProducto
  * @property {String} localizacion
  * @property {String} fotoProducto
+ * @property {Bool} esUsado
  * @property {String} tienda
  * @property {String} enlaceProducto
  */
