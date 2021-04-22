@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { fetch } from 'meteor/fetch';
 
 import convertirPreciosAPesos from '../conversorPeso/conversor';
@@ -35,6 +36,11 @@ const obtenerResultadosAmazon = async ({ texto, limit = 10 }) => {
 
   try {
     const llamado = await (fetch(url));
+
+    if (llamado.status >= 500) {
+      console.log('error al consumir datos de amazon. Estatus code: ', llamado.status);
+      return [];
+    }
 
     const resultado = await llamado.json();
 

@@ -1,6 +1,12 @@
 import { Meteor } from 'meteor/meteor';
 
 /**
+ * @typedef Ordenamiento
+ * @property {String} campo
+ * @property {String} orden
+ */
+
+/**
  *
  * @typedef Resultado
  * @property {String} nombreProducto
@@ -15,13 +21,16 @@ import { Meteor } from 'meteor/meteor';
 
 /**
  * función para que a partir de un texto se obtenga el resultado de búsqueda
- * @param {String} texto texto a buscar
+ * @param {Object} entrada
+ * @param {String} entrada.texto texto a buscar
+ * @param {Number} entrada.limit cantidad de elementos a filtrar
+ * @param {Ordenamiento} entrada.ordenarPor
  * @returns {Promise<Resultado[]>}
  */
-export const obtenerTodosLosResultados = (texto) => new Promise(
+export const obtenerTodosLosResultados = (entrada) => new Promise(
   (resolve, reject) => Meteor.call(
     'obtenerTodosLosResultados',
-    { texto },
+    entrada,
     (err, result) => {
       if (err) {
         reject(err);

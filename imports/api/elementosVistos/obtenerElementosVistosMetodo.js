@@ -22,6 +22,7 @@ const obtenerElementosVistosMetodo = new ValidatedMethod({
     sort = { fechaVisualizacion: -1 },
     limit = 10,
   }) {
+    this.unblock();
     const { _id: usuarioId } = Meteor.user();
 
     const elementosVistos = obtenerElementosVistos({
