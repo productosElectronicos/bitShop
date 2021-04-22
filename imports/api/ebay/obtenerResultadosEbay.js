@@ -1,5 +1,7 @@
 import { fetch } from 'meteor/fetch';
 
+import convertirPreciosAPesos from '../conversorPeso/conversor';
+import obtenerValorPesoADolar from '../conversorPeso/obtenerValorDolar';
 import tokenEbay from './generarToken';
 
 /**
@@ -22,7 +24,7 @@ const transformarObjetoEbay = (listadoEbay = []) => listadoEbay
   .map((producto) => ({
     productoId: producto?.itemId,
     nombreProducto: producto?.title,
-    precioProducto: producto?.price.value,
+    precioProducto: Number.parseFloat(producto?.price.value),
     localizacion: producto?.itemLocation.country,
     fotoProducto: producto?.thumbnailImages[0].imageUrl,
     esUsado: producto?.conditionId === '3000',
@@ -60,7 +62,9 @@ const obtenerResultadosEbay = async ({ texto, limit = 10 }) => {
 
     const resultado = transformarObjetoEbay(itemSummaries);
 
-    return resultado;
+    const valorDolar = await obtenerValorPesoADolar();
+
+    return resultado.map(convertirPreciosAPesos(valorDolar));
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(error);

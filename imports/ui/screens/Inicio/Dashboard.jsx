@@ -18,6 +18,7 @@ const Dashboard = () => {
   // manejo de array de resultados
   const [listadoLinio, setListadoLinio] = useState([]);
   const [listadoOlx, setListadoOlx] = useState([]);
+  const [listadoEbay, setListadoEbay] = useState([]);
   const [listadoExito, setListadoExito] = useState([]);
   const [listadoFalabella, setListadoFalabella] = useState([]);
   const [listadoMercadoLibre, setListadoMercadoLibre] = useState([]);
@@ -27,6 +28,7 @@ const Dashboard = () => {
   // cargando estados
   const [cargandoMercardoLibre, setCargandoMercardoLibre] = useState(true);
   const [cargandoAmazon, setCargandoAmazon] = useState(true);
+  const [cargandoEbay, setCargandoEbay] = useState(true);
   const [cargandoRecomendaciones, setCargandoRecomendaciones] = useState(true);
 
   const obtenerProductosAmazon = async (texto) => {
@@ -41,6 +43,19 @@ const Dashboard = () => {
       console.error(error);
     }
     setCargandoAmazon(false);
+  };
+  const obtenerProductosEbay = async (texto) => {
+    try {
+      const datosEbay = await obtenerResultadosPorTienda({
+        texto,
+        limit: 4,
+        metodo: 'obtenerResultadosEbay',
+      });
+      setListadoEbay(datosEbay);
+    } catch (error) {
+      console.error(error);
+    }
+    setCargandoEbay(false);
   };
   const obtenerProductosOlx = async () => {
     try {
@@ -96,6 +111,7 @@ const Dashboard = () => {
       setCargandoMercardoLibre(false);
       setCargandoRecomendaciones(false);
       setCargandoAmazon(false);
+      setCargandoEbay(false);
     }
   };
 
@@ -131,6 +147,7 @@ const Dashboard = () => {
     if (ultimaPalabraBuscada) {
       obtenerResultadoMercadoLibre(ultimaPalabraBuscada);
       obtenerProductosAmazon(ultimaPalabraBuscada);
+      obtenerProductosEbay(ultimaPalabraBuscada);
       obtenerResultadosRecomendados(ultimaPalabraBuscada);
     }
   }, [ultimaPalabraBuscada]);
@@ -167,6 +184,13 @@ const Dashboard = () => {
             listaOfertas={ultimaPalabraBuscada ? listadoAmazon : []}
             titulo="Ofertas Amazon Recomendadas para ti!"
             isLoading={cargandoAmazon}
+          />
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <CardGeneral
+            listaOfertas={ultimaPalabraBuscada ? listadoEbay : []}
+            titulo="Ofertas Ebay Recomendadas para ti!"
+            isLoading={cargandoEbay}
           />
         </Grid>
         <Grid item xs={12} md={4}>
