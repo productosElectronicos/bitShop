@@ -1,43 +1,39 @@
-import { ThemeProvider } from '@material-ui/core/styles';
+import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 
 import React from 'react';
 
 import Button from '@material-ui/core/Button';
 
-import themeSelectores from '../../theme/themeSelectores.js';
+import TIENDAS_DISPONIBLES from '../Tiendas/BotonesTiendas.jsx';
 
-/**
- * Manejo de tiendas disponibles
- * @constant
- * @type {String[]}
- * @default
- */
-const TIENDAS_DISPONIBLES = [
-  'Mercado Libre',
-  'Amazon',
-  'Ebay',
-  'Olx',
-  'Linio',
-  'Exito',
-  'Falabella',
-];
+const useStyles = makeStyles((theme) => ({
+  contenedor: {
+    textAlign: 'left',
+  },
 
-const Tiendas = () => (
-  <ThemeProvider theme={themeSelectores}>
-    <div style={{ textAlign: 'left' }}>
+  botonNoSeleccionado: {
+    background: '#ffffff',
+    textTransform: 'capitalize',
+  },
+}));
+
+const Tiendas = () => {
+  const classes = useStyles();
+  return (
+    <div className={classes.contenedor}>
       {TIENDAS_DISPONIBLES.map((tienda) => (
         <Button
           size="small"
           variant="outlined"
-          key={tienda}
-          style={{ background: '#ffffff' }}
+          key={tienda.name}
+          className={classes.botonNoSeleccionado}
+          startIcon={tienda.icon}
         >
-          {tienda}
+          {tienda.name}
         </Button>
       ))}
-
     </div>
-  </ThemeProvider>
-);
+  );
+};
 
 export default Tiendas;
