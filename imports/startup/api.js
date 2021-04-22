@@ -1,5 +1,6 @@
 import '../api/test';
 import '../api/amazon';
+import '../api/ebay';
 import '../api/olx';
 import '../api/linio';
 import '../api/falabella';

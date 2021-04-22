@@ -2,13 +2,15 @@ import _ from 'lodash';
 
 import BlueBird from 'bluebird';
 
+import { removerAcentos } from '../../commons/utilidades';
+
 import obtenerResultadosAmazon from '../amazon/obtenerResultadosAmazon';
 import obtenerResultadosLinio from '../linio/obtenerResultadosLinio';
 import obtenerResultadosFalabella from '../falabella/obtenerResultadosFalabella';
 import obtenerResultadosExito from '../exito/obtenerResultadosExito';
 import obtenerResultadosMercadoLibre from '../mercadoLibre/obtenerResultadosMercadoLibre';
 import obtenerResultadosOlx from '../olx/obtenerResultadosOlx';
-import { removerAcentos } from '../../commons/utilidades';
+import obtenerResultadosEbay from '../ebay/obtenerResultadosEbay';
 
 /**
  *
@@ -68,12 +70,14 @@ const obtenerTodosLosResultados = async (texto) => {
       texto,
     }),
     resultadosMercadoLibre: obtenerResultadosMercadoLibre({ texto }),
+    resultadosEbay: obtenerResultadosEbay({ texto }),
 
   });
 
   const {
     resultadosAmazon, resultadosLinio, resultadosFalabella,
     resultadosExito, resultadosMercadoLibre, resultadosOlx,
+    resultadosEbay,
   } = await allResultados;
 
   const totalResultados = _.concat(
@@ -83,6 +87,7 @@ const obtenerTodosLosResultados = async (texto) => {
     resultadosExito,
     resultadosMercadoLibre,
     resultadosOlx,
+    resultadosEbay,
   );
 
   const totalResultadosOrdenados = _.orderBy(
