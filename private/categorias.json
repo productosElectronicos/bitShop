@@ -121,5 +121,87 @@
       "new classic edition",
       "super nintendo classic edition snes mini"
     ]
+  },
+  {
+    "label": "juegos",
+    "value": "juegos",
+    "categories": [
+      {
+        "id": 4,
+        "name": "Acción"
+      },
+      {
+        "id": 51,
+        "name": "Indie"
+      },
+      {
+        "id": 3,
+        "name": "Aventura"
+      },
+      {
+        "id": 5,
+        "name": "RPG"
+      },
+      {
+        "id": 10,
+        "name": "Estrategia"
+      },
+      {
+        "id": 2,
+        "name": "Shooter"
+      },
+      {
+        "id": 40,
+        "name": "Casual"
+      },
+      {
+        "id": 14,
+        "name": "Simulación"
+      },
+      {
+        "id": 7,
+        "name": "Puzzle"
+      },
+      {
+        "id": 11,
+        "name": "Arcade"
+      },
+      {
+        "id": 83,
+        "name": "Juegos de plataformas"
+      },
+      {
+        "id": 1,
+        "name": "Carreras"
+      },
+      {
+        "id": 59,
+        "name": "Multijugador masivo"
+      },
+      {
+        "id": 15,
+        "name": "Deportes"
+      },
+      {
+        "id": 6,
+        "name": "Peleas"
+      },
+      {
+        "id": 19,
+        "name": "Familiares"
+      },
+      {
+        "id": 28,
+        "name": "Juegos de mesa"
+      },
+      {
+        "id": 34,
+        "name": "Educativos"
+      },
+      {
+        "id": 17,
+        "name": "Cartas"
+      }
+    ]
   }
 ]
