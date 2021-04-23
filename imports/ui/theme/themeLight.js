@@ -1,6 +1,6 @@
 import { createMuiTheme } from '@material-ui/core';
 
-const fonts = 'Doppio One';
+const fonts = 'Ropa Sans';
 
 const themeLight = createMuiTheme({
   typography: {
