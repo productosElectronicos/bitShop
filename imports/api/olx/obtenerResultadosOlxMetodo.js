@@ -10,6 +10,7 @@ const obtenerResultadosOlxMetodo = new ValidatedMethod({
     limit: { type: Number },
   }).validator(),
   run({ limit }) {
+    this.unblock();
     const resultados = obtenerResultadosOlx(limit);
 
     return resultados;

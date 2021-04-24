@@ -15,6 +15,7 @@ const obtenerResultadosEbayMetodo = new ValidatedMethod({
     },
   }).validator(),
   run({ texto, limit = 10 }) {
+    this.unblock();
     const resultados = MPromise.await(obtenerResultadosEbay({ texto, limit }));
 
     return resultados;

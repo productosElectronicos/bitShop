@@ -14,6 +14,7 @@ const crearElementoVistoMetodo = new ValidatedMethod({
     'producto.enlaceProducto': { type: String },
   }).validator(),
   run({ producto }) {
+    this.unblock();
     const { _id: usuarioId } = Meteor.user();
 
     const elementoCreado = crearElementoVisto({ producto, usuarioId });

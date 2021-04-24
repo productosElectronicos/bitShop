@@ -10,6 +10,7 @@ const obtenerResultadosExitoMetodo = new ValidatedMethod({
     limit: { type: Number },
   }).validator(),
   run({ limit }) {
+    this.unblock();
     const resultados = obtenerResultadosExito(limit);
 
     return resultados;

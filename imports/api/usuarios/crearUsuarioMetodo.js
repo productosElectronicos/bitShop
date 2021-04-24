@@ -17,6 +17,7 @@ const crearUsuario = new ValidatedMethod({
   }).validator(),
   run({ username, profile }) {
     try {
+      this.unblock();
       const idUsuario = Accounts.createUser({
         username,
         email: username,

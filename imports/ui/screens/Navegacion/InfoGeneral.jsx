@@ -59,16 +59,14 @@ const InfoGeneral = ({ classes, estaConectadoUnUsuario }) => {
     : null;
 
   return (
-    <ThemeProvider theme={themeSelectores}>
-      <div className={classes.divAlign}>
-        <ButtonGroup size="small" orientation="vertical">
-          {botonMiPerfil}
-          {botonBits}
-          {botonCerrarSesion}
-          {botonIniciarSesion}
-        </ButtonGroup>
-      </div>
-    </ThemeProvider>
+    <div className={classes.divAlign}>
+      <ButtonGroup size="small" orientation="vertical">
+        {botonMiPerfil}
+        {botonBits}
+        {botonCerrarSesion}
+        {botonIniciarSesion}
+      </ButtonGroup>
+    </div>
   );
 };
 

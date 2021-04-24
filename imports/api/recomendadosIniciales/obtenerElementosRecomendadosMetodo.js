@@ -12,6 +12,7 @@ const obtenerElementosRecomendadosMetodo = new ValidatedMethod({
     texto: { type: String },
   }).validator(),
   run({ limit, texto }) {
+    this.unblock();
     const resultados = MPromise.await(obtenerElementosRecomendados({ limit, texto }));
 
     return resultados;

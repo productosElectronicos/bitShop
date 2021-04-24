@@ -4,7 +4,7 @@
     "value": "computador de mesa",
     "categories": [
       "memoria ram",
-      "procesador",
+      "procesador PC",
       "motherboard",
       "fuente de poder",
       "tarjeta grafica",
@@ -17,17 +17,17 @@
       "nvme",
       "nvme m.2",
       "pci",
-      "vga",
-      "hdmi",
-      "sata",
+      "cable vga",
+      "cable hdmi",
+      "disco duro sata",
       "tarjeta inalambrica",
       "tarjeta de audio",
       "mouse",
       "teclado",
       "monitor",
       "parlantes pc",
-      "windows 8",
-      "windows 10"
+      "Licencia windows 8",
+      "Licencia windows 10"
     ]
   },
   {
@@ -39,8 +39,8 @@
       "teclado",
       "disco de estado solido",
       "cargador de portatil",
-      "windows 8",
-      "windows 10",
+      "licencia windows 8",
+      "licencia windows 10",
       "parlantes pc",
       "base refrigerante portatil"
     ]
@@ -49,9 +49,9 @@
     "label": "consola",
     "value": "consola",
     "categories": [
-      "xbox",
-      "playstation",
-      "nintendo"
+      "consola xbox",
+      "consola playstation",
+      "consola nintendo"
     ]
   },
   {
@@ -101,24 +101,24 @@
     "label": "nintendo",
     "value": "nintendo",
     "categories": [
-      "nes",
-      "game boy",
+      "nintendo nes",
+      "nintendo game boy",
       "super nintendo",
-      "virtual boy",
-      "game boy color",
-      "game boy advance",
-      "panasonic q",
-      "game boy advance sp",
+      "nintendo virtual boy",
+      "nintendo game boy color",
+      "nintendo game boy advance",
+      "nintendo panasonic q",
+      "nintendo game boy advance sp",
       "nintendo ds",
       "nintendo ds lite",
-      "wii",
+      "nintendo wii",
       "nintendo 3ds",
-      "wii mini",
+      "nintendo wii mini",
       "nintendo 3ds xl",
-      "wii u",
-      "nintendo 2ds",
-      "new nintendo 3ds",
-      "new classic edition",
+      "nintendo wii u",
+      "nintendo nintendo 2ds",
+      "nintendo 3ds",
+      "nintendo new classic edition",
       "super nintendo classic edition snes mini"
     ]
   }
