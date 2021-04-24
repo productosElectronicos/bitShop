@@ -1,4 +1,4 @@
-import crearElementoGuardadoMethod from './crearElementoGuardadoMethod';
+import crearElementoGuardadoMethod from './crearElementoGuardadoMetodo';
 import obtenerElementoGuardadoMethod from './obtenerElementoGuardadoMethod';
 import eliminarElementoGuardadoMethod from './eliminarElementoGuardadoMethod';
 

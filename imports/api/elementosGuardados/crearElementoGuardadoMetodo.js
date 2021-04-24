@@ -14,10 +14,7 @@ const crearElementoGuardadoMetodo = new ValidatedMethod({
   run({ producto }) {
     const { _id: usuarioId } = Meteor.user();
 
-    return crearElementoGuardado({
-      producto,
-      usuarioId,
-    });
+    return crearElementoGuardado({ producto, usuarioId });
   },
 });
 
