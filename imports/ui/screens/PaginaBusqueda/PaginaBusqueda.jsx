@@ -28,7 +28,7 @@ const PaginaBusqueda = () => {
 
   const obtenerResultados = async() => {
     try {
-      const listaResultados = await obtenerTodosLosResultados(busquedaTransformada);
+      const listaResultados = await obtenerTodosLosResultados({ texto: busquedaTransformada });
 
       setResultados(listaResultados);
       setCargando(false);
