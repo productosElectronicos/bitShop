@@ -11,7 +11,7 @@ import obtenerValorPesoADolar from '../conversorPeso/obtenerValorDolar';
  * @default
  */
 // ESTO DEBE DE SER UNA VARIABLE DE ENTORNO
-const URL_BASE = 'https://web-scraping-bitshop.herokuapp.com';
+const { URL_BASE } = process.env;
 // const URL_BASE = 'http://localhost:4000';
 
 /**
