@@ -10,6 +10,7 @@ const obtenerResultadosFalabellaMetodo = new ValidatedMethod({
     limit: { type: Number },
   }).validator(),
   run({ limit }) {
+    this.unblock();
     const resultados = obtenerResultadosFalabella(limit);
 
     return resultados;

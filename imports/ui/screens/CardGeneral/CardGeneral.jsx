@@ -30,7 +30,7 @@ const CardGeneral = ({ titulo, listaOfertas, isLoading }) => {
       <Card>
         <CardHeader
           title={(
-            <span style={{ fontSize: '60%' }}>
+            <span style={{ fontSize: '60%', textTransform: 'capitalize' }}>
               <b>{titulo}</b>
             </span>
         )}

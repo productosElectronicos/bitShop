@@ -11,6 +11,7 @@ const crearPalabraBuscadaMetodo = new ValidatedMethod({
     busqueda: { type: String },
   }).validator(),
   run({ busqueda }) {
+    this.unblock();
     const usuarioId = Meteor.userId();
 
     // guardamos la palabra o editamos la última modificación

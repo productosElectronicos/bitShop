@@ -11,8 +11,15 @@ const obtenerTodosLosResultadosMetodo = new ValidatedMethod({
   name: 'obtenerTodosLosResultados',
   validate: new SimpleSchema({
     texto: { type: String },
+    limit: { type: Number, optional: true },
+    ordenarPor: {
+      type: Object,
+      optional: true,
+      blackbox: true,
+    },
   }).validator(),
-  run({ texto }) {
+  run({ texto, limit, ordenarPor }) {
+    this.unblock();
     const usuarioId = Meteor.userId();
 
     // agregamos el texto buscado a la colección de palabras buscadas
@@ -22,7 +29,11 @@ const obtenerTodosLosResultadosMetodo = new ValidatedMethod({
     });
 
     // obtenemos los resultados
-    const resultados = MPromise.await(obtenerTodosLosResultados(texto));
+    const resultados = MPromise.await(obtenerTodosLosResultados({
+      texto,
+      limit,
+      ordenarPor,
+    }));
 
     return resultados;
   },

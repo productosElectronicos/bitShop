@@ -10,6 +10,7 @@ const validarTokenMetodo = new ValidatedMethod({
     token: { type: String },
   }).validator(),
   run({ token }) {
+    this.unblock();
     const usuario = Meteor.users.findOne({
       'services.password.reset.token': token,
     }, {

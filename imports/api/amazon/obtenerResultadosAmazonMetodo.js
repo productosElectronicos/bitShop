@@ -15,6 +15,7 @@ const obtenerResultadosAmazonMetodo = new ValidatedMethod({
     },
   }).validator(),
   run({ limit, texto }) {
+    this.unblock();
     const resultados = MPromise.await(obtenerResultadosAmazon({
       texto,
       limit,
