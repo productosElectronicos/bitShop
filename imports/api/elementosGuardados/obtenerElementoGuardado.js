@@ -3,15 +3,9 @@ import ElementosGuardados from '../../collections/elementosGuardados';
 /**
  * objeto con datos de producto guardado
  * @typedef Producto
- * @property {String} nombreProducto
- * @property {Number} precioProducto
- * @property {String} descripcionProducto
- * @property {String} localizacion
- * @property {String} fotoProducto
- * @property {Boolean} esUsado
- * @property {String} tienda
- * @property {String} enlaceProducto
  * @property {String} usuarioId
+ * @property {String} productoId
+ * @property {String} enlaceProducto
  * @property {Date} fechaGuardado
  */
 
@@ -20,6 +14,7 @@ import ElementosGuardados from '../../collections/elementosGuardados';
  * @param {Object} entrada
  * @param {String} entrada.usuarioId id del usuario
  * @param {Number} entrada.limit limite de la consulta
+ * @param {Object} entrada.sort, sort es de la forma { parametroAOrdenar: Number }
  * @returns {Producto[]}
  */
 
