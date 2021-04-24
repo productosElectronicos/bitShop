@@ -6,6 +6,7 @@ import ElementosGuardados from '../../collections/elementosGuardados';
  * @property {String} usuarioId
  * @property {String} enlaceProducto
  * @property {Date} fechaGuardado
+ * @property {String} productoId
  *
  */
 
@@ -14,6 +15,7 @@ import ElementosGuardados from '../../collections/elementosGuardados';
  * @param {Object} entrada
  * @param {Producto} entrada.producto objeto con los datos del producto
  * @param {String} entrada.usuarioId id del usuario autenticado
+ * @returns {productoGuardado}
  */
 
 const crearElementoGuardado = ({ producto, usuarioId }) => ElementosGuardados.upsert({
@@ -25,6 +27,6 @@ const crearElementoGuardado = ({ producto, usuarioId }) => ElementosGuardados.up
     usuarioId,
     fechaGuardado: new Date(),
   },
-}).fetch();
+});
 
 export default crearElementoGuardado;
