@@ -3,7 +3,7 @@ import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import SimpleSchema from 'simpl-schema';
 import obtenerElementoGuardado from './obtenerElementoGuardado';
 
-const obtenerElementoGuardadoMethod = new ValidatedMethod({
+const obtenerElementoGuardadoMetodo = new ValidatedMethod({
   name: 'obtenerElementoGuardado',
   validate: new SimpleSchema({
     usuarioId: { type: String },
@@ -31,4 +31,4 @@ const obtenerElementoGuardadoMethod = new ValidatedMethod({
   },
 });
 
-export default obtenerElementoGuardadoMethod;
+export default obtenerElementoGuardadoMetodo;
