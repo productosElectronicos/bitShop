@@ -18,8 +18,8 @@ import tokenEbay from './generarToken';
 
 /**
  * función para transformar el listado para lo que requiere la página
- * @param {Object[]} listadoEbay
- * @returns {Resultado[]}
+ * @param {Object} productoEbay
+ * @returns {Resultado}
 */
 const transformarObjetoEbay = (listadoEbay = []) => listadoEbay
   .map((producto) => ({
@@ -34,18 +34,16 @@ const transformarObjetoEbay = (listadoEbay = []) => listadoEbay
   }));
 
 /**
- * Función para buscar resultaods en ebay
- * @param {Object} entrada
- * @param {String} entrada.texto
- * @param {Number} entrada.limit
- * @returns {Resultado[]}
+ * Función para buscar producto en ebay
+ * @param {String} productoId
+ * @returns {Resultado}
  */
-// const { EBAY_CLIENT } = process.env.EBAY_CLIENT;
-const URL_BASE = 'https://api.ebay.com/buy/browse/v1/item_summary/search?q=';
+
+const URL_BASE = 'https://api.ebay.com/buy/browse/v1/item?item_ids=';
 
 // TODO: A esto le falta la implementación de los filtros
-const obtenerResultadosEbay = async ({ texto, limit = 10 }) => {
-  const url = `${URL_BASE}${texto}&limit=${limit}&filter=deliveryCountry:CO`;
+const obtenerResultadosEbay = async (productoId) => {
+  const url = `${URL_BASE}${productoId}`;
 
   const token = await tokenEbay();
 
