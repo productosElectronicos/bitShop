@@ -35,10 +35,10 @@ const transformarObjeto = (producto = null) => ({
 */
 
 const URL_API_MERCADO_LIBRE = 'https://api.mercadolibre.com/items?ids=';
-const filtros = '&attributes=price,title,pictures,address,condition,seller_address.city.name,permalink';
+const atributos = '&attributes=price,title,pictures,address,condition,seller_address.city.name,permalink';
 
 const obtenerProductoMercadoLibre = async (productoId) => {
-  const url = `${URL_API_MERCADO_LIBRE}${productoId}${filtros}`;
+  const url = `${URL_API_MERCADO_LIBRE}${productoId}${atributos}`;
 
   try {
     const llamado = await (fetch(url, {

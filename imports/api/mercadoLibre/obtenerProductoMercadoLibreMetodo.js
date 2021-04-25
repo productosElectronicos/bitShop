@@ -8,10 +8,10 @@ import obtenerProductoMercadoLibre from './obtenerProductoMercadoLibre';
 const obtenerProductoMercadoLibreMetodo = new ValidatedMethod({
   name: 'obtenerProductoMercadoLibre',
   validate: new SimpleSchema({
-    url: { type: String },
+    productoId: { type: String },
   }).validator(),
-  run({ url }) {
-    const resultado = MPromise.await(obtenerProductoMercadoLibre(url));
+  run({ productoId }) {
+    const resultado = MPromise.await(obtenerProductoMercadoLibre(productoId));
 
     return resultado;
   },
