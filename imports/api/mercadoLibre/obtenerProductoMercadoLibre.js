@@ -15,7 +15,7 @@ import { fetch } from 'meteor/fetch';
 
 /**
  * función para transformar el listado para lo que requiere la página
- * @param {Object[]} listadoMercadoLibre
+ * @param {Object} producto
  * @returns {Producto}
 */
 const transformarObjeto = (producto = null) => ({
