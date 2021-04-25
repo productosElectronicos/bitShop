@@ -5,6 +5,7 @@ const obtenerInformacionUsuarioMetodo = new ValidatedMethod({
   name: 'obtenerInformacionUsuario',
   validate: null,
   run() {
+    this.unblock();
     const userInfo = Meteor.user({
       fields: {
         createdAt: 1,

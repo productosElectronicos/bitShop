@@ -20,7 +20,7 @@ import obtenerTodosLosResultados from '../buscador/obtenerTodosLosResultados';
  */
 
 const obtenerElementosRecomendados = async ({ limit = 4, texto }) => {
-  const resultados = await obtenerTodosLosResultados(texto);
+  const resultados = await obtenerTodosLosResultados({ texto });
   return resultados.slice(0, limit);
 };
 

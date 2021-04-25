@@ -1,4 +1,8 @@
+/* eslint-disable no-console */
 import { fetch } from 'meteor/fetch';
+
+import convertirPreciosAPesos from '../conversorPeso/conversor';
+import obtenerValorPesoADolar from '../conversorPeso/obtenerValorDolar';
 
 /**
  * enlace de búsqueda de amazon
@@ -8,6 +12,7 @@ import { fetch } from 'meteor/fetch';
  */
 // ESTO DEBE DE SER UNA VARIABLE DE ENTORNO
 const URL_BASE = 'https://web-scraping-bitshop.herokuapp.com';
+// const URL_BASE = 'http://localhost:4000';
 
 /**
  *
@@ -32,10 +37,18 @@ const obtenerResultadosAmazon = async ({ texto, limit = 10 }) => {
   try {
     const llamado = await (fetch(url));
 
+    if (llamado.status >= 500) {
+      console.log('error al consumir datos de amazon. Estatus code: ', llamado.status);
+      return [];
+    }
+
     const resultado = await llamado.json();
 
-    return resultado;
+    const valorDolar = await obtenerValorPesoADolar();
+
+    return resultado.map(convertirPreciosAPesos(valorDolar));
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
     return [];
   }
