@@ -16,9 +16,9 @@
  * @returns {Resultado[]}
  */
 
-const { URL_BASE } = process.env;
-
 const obtenerResultadosFalabella = async ({ texto, limit = 10 }) => {
+  const { URL_BASE } = process.env;
+
   const url = `${URL_BASE}/falabella/${texto}/${limit}`;
 
   try {
