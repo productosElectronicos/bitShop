@@ -29,6 +29,7 @@ const Dashboard = () => {
   const [cargandoMercardoLibre, setCargandoMercardoLibre] = useState(true);
   const [cargandoAmazon, setCargandoAmazon] = useState(true);
   const [cargandoEbay, setCargandoEbay] = useState(true);
+  const [cargandoFalabella, setCargandoFalabella] = useState(true);
   const [cargandoRecomendaciones, setCargandoRecomendaciones] = useState(true);
 
   const obtenerProductosAmazon = async (texto) => {
@@ -56,6 +57,19 @@ const Dashboard = () => {
       console.error(error);
     }
     setCargandoEbay(false);
+  };
+  const obtenerProductosFalabella = async (texto) => {
+    try {
+      const datosFalabella = await obtenerResultadosPorTienda({
+        texto,
+        limit: 4,
+        metodo: 'obtenerResultadosFalabella',
+      });
+      setListadoFalabella(datosFalabella);
+    } catch (error) {
+      console.error(error);
+    }
+    setCargandoFalabella(false);
   };
   const obtenerProductosOlx = async () => {
     try {
@@ -90,18 +104,6 @@ const Dashboard = () => {
       console.error(error);
     }
   };
-  const obtenerProductosFalabella = async () => {
-    try {
-      const datosFalabella = await obtenerResultadosDePrueba({
-        limit: 4,
-        metodo: 'obtenerResultadosFalabella',
-      });
-      setListadoFalabella(datosFalabella);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   const obtenerUltimaPalabraBuscada = async() => {
     const listadoUltimaPalabra = await obtenerPalabrasBuscadas(1);
 
@@ -112,6 +114,7 @@ const Dashboard = () => {
       setCargandoRecomendaciones(false);
       setCargandoAmazon(false);
       setCargandoEbay(false);
+      setCargandoFalabella(false);
     }
   };
 
@@ -148,6 +151,7 @@ const Dashboard = () => {
       obtenerResultadoMercadoLibre(ultimaPalabraBuscada);
       obtenerProductosAmazon(ultimaPalabraBuscada);
       obtenerProductosEbay(ultimaPalabraBuscada);
+      obtenerProductosFalabella(ultimaPalabraBuscada);
       obtenerResultadosRecomendados(ultimaPalabraBuscada);
     }
   }, [ultimaPalabraBuscada]);
@@ -157,7 +161,6 @@ const Dashboard = () => {
     obtenerProductosOlx();
     obtenerProductosLinio();
     obtenerProductosExito();
-    obtenerProductosFalabella();
     return () => null;
   }, []);
 
@@ -194,10 +197,14 @@ const Dashboard = () => {
           />
         </Grid>
         <Grid item xs={12} md={4}>
-          <CardGeneral listaOfertas={listadoLinio} titulo="Ofertas Linio Recomendadas para ti!" />
+          <CardGeneral
+            listaOfertas={ultimaPalabraBuscada ? listadoFalabella : []}
+            titulo="Ofertas Falabella Recomendadas para ti!"
+            isLoading={cargandoFalabella}
+          />
         </Grid>
         <Grid item xs={12} md={4}>
-          <CardGeneral listaOfertas={listadoFalabella} titulo="Ofertas Falabella Recomendadas para ti!" />
+          <CardGeneral listaOfertas={listadoLinio} titulo="Ofertas Linio Recomendadas para ti!" />
         </Grid>
         <Grid item xs={12} md={4}>
           <CardGeneral listaOfertas={listadoExito} titulo="Ofertas Exito Recomendadas para ti!" />

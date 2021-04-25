@@ -7,11 +7,12 @@ import obtenerResultadosFalabella from './obtenerResultadosFalabella';
 const obtenerResultadosFalabellaMetodo = new ValidatedMethod({
   name: 'obtenerResultadosFalabella',
   validate: new SimpleSchema({
-    limit: { type: Number },
+    texto: { type: String },
+    limit: { type: Number, optional: true },
   }).validator(),
-  run({ limit }) {
+  run({ limit, texto }) {
     this.unblock();
-    const resultados = obtenerResultadosFalabella(limit);
+    const resultados = obtenerResultadosFalabella({ texto, limit });
 
     return resultados;
   },

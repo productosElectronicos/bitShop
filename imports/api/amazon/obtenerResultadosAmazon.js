@@ -10,9 +10,6 @@ import obtenerValorPesoADolar from '../conversorPeso/obtenerValorDolar';
  * @type {String}
  * @default
  */
-// ESTO DEBE DE SER UNA VARIABLE DE ENTORNO
-const URL_BASE = 'https://web-scraping-bitshop.herokuapp.com';
-// const URL_BASE = 'http://localhost:4000';
 
 /**
  *
@@ -32,6 +29,8 @@ const URL_BASE = 'https://web-scraping-bitshop.herokuapp.com';
  * @returns {Resultado[]}
  */
 const obtenerResultadosAmazon = async ({ texto, limit = 10 }) => {
+  const { URL_BASE } = process.env;
+
   const url = `${URL_BASE}/amazon/${texto}/${limit}`;
 
   try {
