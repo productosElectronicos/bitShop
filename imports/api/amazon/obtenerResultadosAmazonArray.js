@@ -11,8 +11,8 @@ import obtenerValorPesoADolar from '../conversorPeso/obtenerValorDolar';
  * @default
  */
 // ESTO DEBE DE SER UNA VARIABLE DE ENTORNO
-const URL_BASE = 'https://web-scraping-bitshop.herokuapp.com';
-// const URL_BASE = 'http://localhost:4000';
+// const URL_BASE = 'https://web-scraping-bitshop.herokuapp.com';
+const URL_BASE = 'http://localhost:4000/amazon/array';
 
 /**
  *
@@ -31,11 +31,14 @@ const URL_BASE = 'https://web-scraping-bitshop.herokuapp.com';
  * @param {Number} entrada.limit
  * @returns {Resultado[]}
  */
-const obtenerResultadosAmazon = async ({ texto, limit = 10 }) => {
-  const url = `${URL_BASE}/amazon/${texto}/${limit}`;
-
+const obtenerResultadosAmazonArray = async ({ listaABuscar, limit = 10 }) => {
+  const body = { listaABuscar, limite: limit };
   try {
-    const llamado = await (fetch(url));
+    const llamado = await (fetch(URL_BASE, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    }));
 
     if (llamado.status >= 500) {
       console.log('error al consumir datos de amazon. Estatus code: ', llamado.status);
@@ -46,7 +49,13 @@ const obtenerResultadosAmazon = async ({ texto, limit = 10 }) => {
 
     const valorDolar = await obtenerValorPesoADolar();
 
-    return resultado.map(convertirPreciosAPesos(valorDolar));
+    return resultado.map((iterador) => {
+      const { texto, resultados } = iterador;
+      const resultadosParseados = resultados.map(convertirPreciosAPesos(valorDolar));
+      return {
+        texto, resultados: resultadosParseados,
+      };
+    });
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(error);
@@ -54,4 +63,4 @@ const obtenerResultadosAmazon = async ({ texto, limit = 10 }) => {
   }
 };
 
-export default obtenerResultadosAmazon;
+export default obtenerResultadosAmazonArray;

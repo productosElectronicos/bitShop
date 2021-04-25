@@ -10,6 +10,7 @@ const obtenerResultadosLinioMetodo = new ValidatedMethod({
     limit: { type: Number },
   }).validator(),
   run({ limit }) {
+    this.unblock();
     const resultados = obtenerResultadosLinio(limit);
 
     return resultados;

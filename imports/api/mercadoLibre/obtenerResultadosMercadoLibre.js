@@ -24,7 +24,7 @@ const transformarObjeto = (listadoMercadoLibre = []) => listadoMercadoLibre
     nombreProducto: producto?.title,
     precioProducto: producto?.price,
     descripcionProducto: '',
-    localizacion: producto?.address.city_name,
+    localizacion: producto?.address?.city_name,
     fotoProducto: producto?.thumbnail,
     esUsado: false,
     tienda: 'Mercado Libre',

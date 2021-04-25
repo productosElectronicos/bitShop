@@ -1,6 +1,11 @@
 import { createMuiTheme } from '@material-ui/core';
 
+const fonts = 'Ropa Sans';
+
 const themeLight = createMuiTheme({
+  typography: {
+    fontFamily: fonts,
+  },
   palette: {
     background: {
       default: '#ABD8CD',

@@ -11,3 +11,4 @@ import '../api/elementosVistos';
 import '../api/palabrasBuscadas';
 import '../api/recomendadosIniciales';
 import '../api/usuarios';
+import '../api/utils';

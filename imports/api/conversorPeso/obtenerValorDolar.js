@@ -4,8 +4,6 @@ import _ from 'lodash';
 import { DateTime } from 'luxon';
 import { fetch } from 'meteor/fetch';
 
-const urlCurrencyLayer = 'http://api.currencylayer.com/live?access_key=7c68846cfe6dcb7026f648c8cceba018&format=1';
-
 const valorPesoADolar = {};
 
 /**
@@ -13,6 +11,7 @@ const valorPesoADolar = {};
  * @returns {Promise<Number>} valor de 1 dolar a pesos
  */
 const obtenerValorPesoADolar = async () => {
+  const urlCurrencyLayer = `http://api.currencylayer.com/live?access_key=${process.env.CURRENCY_MONEY}&format=1`;
   const fechaActual = DateTime.now();
 
   const { fechaActualizacion = new Date() } = valorPesoADolar;

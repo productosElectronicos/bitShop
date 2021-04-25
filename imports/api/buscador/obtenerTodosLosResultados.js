@@ -13,6 +13,12 @@ import obtenerResultadosOlx from '../olx/obtenerResultadosOlx';
 import obtenerResultadosEbay from '../ebay/obtenerResultadosEbay';
 
 /**
+ * @typedef Ordenamiento
+ * @property {String} campo
+ * @property {String} orden
+ */
+
+/**
  *
  * @typedef Resultado
  * @property {String} nombreProducto
@@ -45,10 +51,13 @@ const filtrarPorTexto = ({ productos = [], texto }) => {
 
 /**
  * función para retornar resultados
- * @param {String} texto
+ * @param {Object} entrada
+ * @param {String} entrada.texto
+ * @param {Number} entrada.limit
+ * @param {Ordenamiento} entrada.ordenarPor
  * @returns {Resultado[]}
  */
-const obtenerTodosLosResultados = async (texto) => {
+const obtenerTodosLosResultados = async ({ texto, limit, ordenarPor = {} }) => {
   // obtenemos todos los resultados paralelamente
   const allResultados = BlueBird.props({
     resultadosAmazon: obtenerResultadosAmazon({ texto }),
@@ -90,11 +99,19 @@ const obtenerTodosLosResultados = async (texto) => {
     resultadosEbay,
   );
 
+  const ordenamiento = {
+    campo: ordenarPor?.campo || 'precioProducto',
+    orden: ordenarPor?.orden || 'asc',
+  };
   const totalResultadosOrdenados = _.orderBy(
     totalResultados,
-    ['precioProducto'],
-    ['asc'],
+    [ordenamiento.campo],
+    [ordenamiento.orden],
   );
+
+  if (limit) {
+    return _.take(totalResultadosOrdenados, 4);
+  }
 
   return totalResultadosOrdenados;
 };
