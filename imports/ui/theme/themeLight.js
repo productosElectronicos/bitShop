@@ -19,6 +19,9 @@ const themeLight = createMuiTheme({
     backgroundColor: {
       main: '#ABD8CD',
     },
+    selectoresFontColor: {
+      main: '#1C1C1C',
+    },
   },
 });
 

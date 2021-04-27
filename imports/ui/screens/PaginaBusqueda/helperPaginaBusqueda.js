@@ -1,11 +1,17 @@
+import _ from 'lodash';
+
 import { Meteor } from 'meteor/meteor';
 
 /**
  * @typedef Ordenamiento
  * @property {String} campo
- * @property {String} orden
+ * @property {('desc'|'asc')} orden
  */
-
+/**
+ * @typedef EntradaOrdenar
+ * @property {String} atributo
+ * @property {('desc'|'asc')} orden
+ */
 /**
  *
  * @typedef Resultado
@@ -67,3 +73,25 @@ export const crearElementoVisto = (producto) => new Promise(
     },
   ),
 );
+
+/**
+ *
+ * @param {EntradaOrdenar} entrada
+ * @returns {Ordenamiento}
+ */
+export const parsearFiltroBusquedaOrdenarPor = ({
+  atributo, orden,
+}) => ({ campo: atributo, orden });
+
+export const filtrarBackEnd = ({ ordenarPor, limit }) => {
+  const query = {};
+  if (!_.isEmpty(ordenarPor)) {
+    query.ordenarPor = parsearFiltroBusquedaOrdenarPor(ordenarPor);
+  }
+
+  if (limit) {
+    query.limit = limit;
+  }
+
+  return query;
+};

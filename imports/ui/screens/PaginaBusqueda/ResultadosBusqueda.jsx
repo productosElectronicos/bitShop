@@ -12,16 +12,10 @@ import FiltrosOrden from './FiltrosOrden.jsx';
 
 const ResultadosBusqueda = ({ resultados }) => (
   <>
-    <br />
-    <Grid container>
-      <Grid item xs={12}>
-        <div textalign="right">
-          <FiltrosOrden />
-        </div>
-      </Grid>
-    </Grid>
-
     <Grid container spacing={2}>
+      <Grid item xs={12}>
+        <FiltrosOrden />
+      </Grid>
       <Grid item xs={12} md={2}>
         <Filtros />
       </Grid>
