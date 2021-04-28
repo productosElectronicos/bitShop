@@ -1,3 +1,5 @@
+import { Meteor } from 'meteor/meteor';
+import { useTracker } from 'meteor/react-meteor-data';
 import { withStyles } from '@material-ui/core/styles';
 
 import React from 'react';
@@ -23,22 +25,29 @@ import cardResultadoEstilo from './cardResultadoEstilo.jsx';
 import { crearElementoVisto } from './helperPaginaBusqueda.js';
 
 const CardResultado = ({
-  nombreProducto, precioProducto, descripcionProducto,
-  localizacion, fotoProducto, esUsado, tienda, enlaceProducto,
+  nombreProducto, precioProducto,
+  localizacion, fotoProducto, esUsado, productoId, tienda, enlaceProducto,
   classes,
 }) => {
-  const precio = tranformarNumeroAString(precioProducto);
+  const precio = tranformarNumeroAString(precioProducto || 0);
 
   const producto = {
-    nombreProducto,
-    precioProducto,
-    descripcionProducto,
-    localizacion,
-    fotoProducto,
-    esUsado,
+    productoId,
     tienda,
     enlaceProducto,
   };
+
+  const { estaConectadoUnUsuario } = useTracker(() => {
+    // verificamos el usuario
+    const usuarioId = Meteor.userId();
+
+    // agregamos un booleano que define el cambio
+    const estaConectado = !!usuarioId;
+
+    return {
+      estaConectadoUnUsuario: estaConectado,
+    };
+  });
 
   return (
     <>
@@ -58,7 +67,7 @@ const CardResultado = ({
               </Typography>
 
               <Typography noWrap variant="subtitle2" color="textSecondary">
-                {`${tienda} - $${precio}`}
+                {`$${precio} - ${tienda}`}
               </Typography>
             </Grid>
           </Grid>
@@ -66,8 +75,12 @@ const CardResultado = ({
         </CardContent>
         <CardActions style={{ float: 'right' }}>
           <div style={{ float: 'left !important' }}>
-            <Link href={enlaceProducto} target="_blank" onClick={() => crearElementoVisto(producto)}>
-              {`Ir a ${tienda}`}
+            <Link
+              href={enlaceProducto}
+              target="_blank"
+              onClick={() => (estaConectadoUnUsuario ? crearElementoVisto(producto) : null)}
+            >
+              Ir a tienda
             </Link>
           </div>
 
@@ -78,9 +91,13 @@ const CardResultado = ({
             <IconButton size="small" color="primary">
               <Share />
             </IconButton>
-            <IconButton size="small" color="primary">
-              <Save />
-            </IconButton>
+            {estaConectadoUnUsuario
+              ? (
+                <IconButton size="small" color="primary">
+                  <Save />
+                </IconButton>
+              )
+              : null}
           </div>
 
         </CardActions>
@@ -88,14 +105,19 @@ const CardResultado = ({
     </>
   );
 };
+CardResultado.defaultProps = {
+  productoId: null,
+  localizacion: null,
+  esUsado: null,
+};
 
 CardResultado.propTypes = {
   nombreProducto: PropTypes.string.isRequired,
   precioProducto: PropTypes.number.isRequired,
-  descripcionProducto: PropTypes.string.isRequired,
-  localizacion: PropTypes.string.isRequired,
+  productoId: PropTypes.string,
+  localizacion: PropTypes.string,
   fotoProducto: PropTypes.string.isRequired,
-  esUsado: PropTypes.bool.isRequired,
+  esUsado: PropTypes.bool,
   tienda: PropTypes.string.isRequired,
   enlaceProducto: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,

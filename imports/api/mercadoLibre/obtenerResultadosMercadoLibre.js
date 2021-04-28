@@ -24,7 +24,7 @@ const transformarObjeto = (listadoMercadoLibre = []) => listadoMercadoLibre
     nombreProducto: producto?.title,
     precioProducto: producto?.price,
     descripcionProducto: '',
-    localizacion: producto?.address.city_name,
+    localizacion: producto?.address?.city_name,
     fotoProducto: producto?.thumbnail,
     esUsado: false,
     tienda: 'Mercado Libre',
@@ -45,7 +45,7 @@ const URL_API_MERCADO_LIBRE = 'https://api.mercadolibre.com/sites/MCO/search?q='
  * @param {Number} entrada.limit
  * @returns {Object[]}
  */
-const obtenerResultadosMercadoLibre = async({ texto, limit = 10 }) => {
+const obtenerResultadosMercadoLibre = async ({ texto, limit = 10 }) => {
   const urlAConsumir = `${URL_API_MERCADO_LIBRE}${texto}&limit=${limit}`;
 
   try {

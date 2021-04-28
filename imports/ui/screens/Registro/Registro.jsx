@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { useSnackbar } from 'notistack';
 
 import React, { useState } from 'react';
+import CreatableSelect from 'react-select/creatable';
 
 // material ui core
 import Avatar from '@material-ui/core/Avatar';
@@ -15,6 +16,7 @@ import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
+import InputLabel from '@material-ui/core/InputLabel';
 
 // components imports
 import { crearUsuario, noEsValidoRegistrarse } from './helpersRegistro.js';
@@ -27,14 +29,14 @@ const Registro = ({ classes }) => {
 
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [gustos, setGustos] = useState(null);
 
   const onRegisterUser = async (event) => {
     event.preventDefault();
 
     const errorRegistrando = noEsValidoRegistrarse({
       name,
-      password,
+      gustos,
       username,
     });
 
@@ -48,11 +50,11 @@ const Registro = ({ classes }) => {
     try {
       await crearUsuario({
         name,
-        password,
+        gustos: gustos.map((gusto) => gusto.value),
         username,
       });
 
-      enqueueSnackbar('Usuario creado con éxito!', {
+      enqueueSnackbar('Usuario creado con éxito! 😊, por favor verifica tu correo para activar la cuenta', {
         variant: 'success',
       });
     } catch (error) {
@@ -111,20 +113,22 @@ const Registro = ({ classes }) => {
                 onChange={(e) => setUsername(e.target.value)}
               />
 
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Contraseña"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+              <br />
+
+              <InputLabel htmlFor="gustos">
+                Escribe tus gustos
+              </InputLabel>
+              <CreatableSelect
+                id="gustos"
+                isClearable
+                isMulti
+                options={[]}
+                onChange={setGustos}
+                value={gustos}
+                placeholder=""
               />
 
+              <br />
               <Button
                 type="submit"
                 fullWidth
@@ -137,7 +141,7 @@ const Registro = ({ classes }) => {
               <Grid container>
                 <Grid item xs={12}>
                   <div className={classes.textItemAlign}>
-                    <Link href="/" variant="body2">
+                    <Link href="/inicio-sesion" variant="body2">
                       ¿Tienes una cuenta? Ingresa aqui ahora!
                     </Link>
                   </div>

@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 
 import { obtenerTodosLosResultados } from './helperPaginaBusqueda';
-import { transformarTexto } from '../../../commons/utilidades';
+import { removerAcentos, transformarTexto } from '../../../commons/utilidades';
 
 import CargandoPagina from '../CargandoPagina/CargandoPagina.jsx';
 import SinResultados from '../SinResultados/SinResultados.jsx';
@@ -15,23 +15,27 @@ import ResultadosBusqueda from './ResultadosBusqueda.jsx';
 const PaginaBusqueda = () => {
   const { id: busqueda } = useParams();
 
-  const busquedaTransformada = transformarTexto({
+  let busquedaTransformada = transformarTexto({
     nuevoSeparador: ' ',
     separador: '+',
     texto: busqueda,
   });
+
+  busquedaTransformada = removerAcentos(busquedaTransformada);
 
   const [resultados, setResultados] = useState([]);
   const [cargando, setCargando] = useState(true);
 
   const obtenerResultados = async() => {
     try {
-      const listaResultados = await obtenerTodosLosResultados(busquedaTransformada);
+      const listaResultados = await obtenerTodosLosResultados({ texto: busquedaTransformada });
 
       setResultados(listaResultados);
       setCargando(false);
     } catch (error) {
       console.error(error);
+      setResultados([]);
+      setCargando(false);
     }
   };
 
