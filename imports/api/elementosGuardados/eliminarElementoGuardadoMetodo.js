@@ -3,15 +3,15 @@ import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import SimpleSchema from 'simpl-schema';
 import eliminarElementoGuardado from './eliminarElementoGuardado';
 
-const eliminarElementoGuardadoMethod = new ValidatedMethod({
+const eliminarElementoGuardadoMetodo = new ValidatedMethod({
   name: 'eliminarElementoGuardado',
   validate: new SimpleSchema({
     productoId: { type: String },
   })._validator(),
   run({ productoId }) {
-    const { _id: usuarioId } = Meteor.user();
-    return eliminarElementoGuardado({ usuarioId });
+    const { _id: Id } = Meteor.id;
+    return eliminarElementoGuardado({ Id });
   },
 });
 
-export default eliminarElementoGuardadoMethod;
+export default eliminarElementoGuardadoMetodo;

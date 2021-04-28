@@ -1,9 +1,9 @@
 import obtenerElementoGuardadoMetodo from './obtenerElementoGuardadoMetodo';
 import crearElementoGuardadoMethod from './crearElementoGuardadoMetodo';
-import eliminarElementoGuardadoMethod from './eliminarElementoGuardadoMethod';
+import eliminarElementoGuardadoMetodo from './eliminarElementoGuardadoMetodo';
 
 export default {
   crearElementoGuardadoMethod,
   obtenerElementoGuardadoMethod: obtenerElementoGuardadoMetodo,
-  eliminarElementoGuardadoMethod,
+  eliminarElementoGuardadoMethod: eliminarElementoGuardadoMetodo,
 };
