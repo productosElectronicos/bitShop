@@ -18,6 +18,6 @@ import ElementosGuardados from '../../collections/elementosGuardados';
  * @returns {Producto[]}
  */
 
-const eliminarElementoGuardado = (entrada) => ElementosGuardados.remove(entrada).fetch();
+const eliminarElementoGuardado = (entrada) => ElementosGuardados.remove(entrada);
 
 export default eliminarElementoGuardado;

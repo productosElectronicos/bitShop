@@ -16,7 +16,7 @@ const obtenerElementoGuardadoMetodo = new ValidatedMethod({
       blackbox: true,
       optional: true,
     },
-  }).validator(),
+  })._validator(),
   run({
     sort = { fechaGuardado: -1 },
     limit = 10,

@@ -7,10 +7,10 @@ const eliminarElementoGuardadoMethod = new ValidatedMethod({
   name: 'eliminarElementoGuardado',
   validate: new SimpleSchema({
     productoId: { type: String },
-  }).validator(),
+  })._validator(),
   run({ productoId }) {
     const { _id: usuarioId } = Meteor.user();
-    return eliminarElementoGuardado({ productoId, usuarioId });
+    return eliminarElementoGuardado({ usuarioId });
   },
 });
 
