@@ -20,7 +20,7 @@ import ElementosGuardados from '../../collections/elementosGuardados';
 
 const crearElementoGuardado = ({ producto, usuarioId }) => ElementosGuardados.upsert({
   usuarioId,
-  url: producto.enlaceProducto,
+  enlaceProducto: producto.enlaceProducto,
 }, {
   $set: {
     ...producto,
