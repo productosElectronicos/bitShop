@@ -14,8 +14,9 @@ import ElementosGuardados from '../../collections/elementosGuardados';
  * función para eliminar el elementos guardado del usuario
  * @param {Object} entrada
  * @param {String} entrada.usuarioId id del usuario
+ * @param {String} entrada.enlaceProducto enlace del producto
  * @param {Number} entrada.productoId id del producto
- * @returns {Producto[]}
+ * @returns {Number} numero de elementos eliminados
  */
 
 const eliminarElementoGuardado = (entrada) => ElementosGuardados.remove(entrada);

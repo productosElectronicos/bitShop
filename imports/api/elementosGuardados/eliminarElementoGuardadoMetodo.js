@@ -6,11 +6,12 @@ import eliminarElementoGuardado from './eliminarElementoGuardado';
 const eliminarElementoGuardadoMetodo = new ValidatedMethod({
   name: 'eliminarElementoGuardado',
   validate: new SimpleSchema({
-    productoId: { type: String },
-  })._validator(),
-  run({ productoId }) {
-    const { _id: Id } = Meteor.id;
-    return eliminarElementoGuardado({ Id });
+    productoId: { type: String, optional: true },
+    enlaceProducto: { type: String },
+  }).validator(),
+  run({ productoId, enlaceProducto }) {
+    const { _id: usuarioId } = Meteor.user();
+    return eliminarElementoGuardado({ usuarioId, productoId, enlaceProducto });
   },
 });
 
