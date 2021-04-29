@@ -66,10 +66,6 @@ const obtenerTodosLosResultados = async ({ texto, limit, ordenarPor = {} }) => {
       productos: obtenerResultadosLinio(),
       texto,
     }),
-    resultadosFalabella: filtrarPorTexto({
-      productos: obtenerResultadosFalabella(),
-      texto,
-    }),
     resultadosExito: filtrarPorTexto({
       productos: obtenerResultadosExito(),
       texto,
@@ -80,6 +76,7 @@ const obtenerTodosLosResultados = async ({ texto, limit, ordenarPor = {} }) => {
     }),
     resultadosMercadoLibre: obtenerResultadosMercadoLibre({ texto }),
     resultadosEbay: obtenerResultadosEbay({ texto }),
+    resultadosFalabella: obtenerResultadosFalabella({ texto }),
 
   });
 
