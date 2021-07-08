@@ -107,7 +107,7 @@ const obtenerTodosLosResultados = async ({ texto, limit, ordenarPor = {} }) => {
   );
 
   if (limit) {
-    return _.take(totalResultadosOrdenados, 4);
+    return _.take(totalResultadosOrdenados, limit);
   }
 
   return totalResultadosOrdenados;
