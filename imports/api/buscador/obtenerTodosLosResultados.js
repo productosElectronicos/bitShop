@@ -2,8 +2,6 @@ import _ from 'lodash';
 
 import BlueBird from 'bluebird';
 
-import { removerAcentos } from '../../commons/utilidades';
-
 import obtenerResultadosAmazon from '../amazon/obtenerResultadosAmazon';
 import obtenerResultadosLinio from '../linio/obtenerResultadosLinio';
 import obtenerResultadosFalabella from '../falabella/obtenerResultadosFalabella';
@@ -32,24 +30,6 @@ import obtenerResultadosEbay from '../ebay/obtenerResultadosEbay';
 */
 
 /**
- * función para filtrar los resultados
- * @param {Object} entrada
- * @param {Resultado[]} entrada.productos
- * @param {String} entrada.texto
- */
-const filtrarPorTexto = ({ productos = [], texto }) => {
-  const regexTexto = new RegExp(`^(.*?(\\b${texto.toLowerCase()}\\b)[^$]*)$`);
-
-  const filtro = productos
-    .filter(
-      (producto) => regexTexto.test(removerAcentos(producto.nombreProducto.toLowerCase().trim()))
-        || regexTexto.test(producto.descripcionProducto.toLowerCase().trim()),
-    );
-
-  return filtro;
-};
-
-/**
  * función para retornar resultados
  * @param {Object} entrada
  * @param {String} entrada.texto
@@ -61,19 +41,9 @@ const obtenerTodosLosResultados = async ({ texto, limit, ordenarPor = {} }) => {
   // obtenemos todos los resultados paralelamente
   const allResultados = BlueBird.props({
     resultadosAmazon: obtenerResultadosAmazon({ texto }),
-
-    resultadosLinio: filtrarPorTexto({
-      productos: obtenerResultadosLinio(),
-      texto,
-    }),
-    resultadosExito: filtrarPorTexto({
-      productos: obtenerResultadosExito(),
-      texto,
-    }),
-    resultadosOlx: filtrarPorTexto({
-      productos: obtenerResultadosOlx(),
-      texto,
-    }),
+    resultadosLinio: obtenerResultadosLinio({ texto }),
+    resultadosExito: obtenerResultadosExito({ texto }),
+    resultadosOlx: obtenerResultadosOlx({ texto }),
     resultadosMercadoLibre: obtenerResultadosMercadoLibre({ texto }),
     resultadosEbay: obtenerResultadosEbay({ texto }),
     resultadosFalabella: obtenerResultadosFalabella({ texto }),

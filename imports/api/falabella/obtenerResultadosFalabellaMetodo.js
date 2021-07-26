@@ -1,4 +1,5 @@
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
+import { Promise as MPromise } from 'meteor/promise';
 
 import SimpleSchema from 'simpl-schema';
 
@@ -14,7 +15,7 @@ const obtenerResultadosFalabellaMetodo = new ValidatedMethod({
     this.unblock();
     const resultados = obtenerResultadosFalabella({ texto, limit });
 
-    return resultados;
+    return MPromise.await(resultados);
   },
 });
 

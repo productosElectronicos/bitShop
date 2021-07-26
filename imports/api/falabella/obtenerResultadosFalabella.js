@@ -9,6 +9,8 @@
  * @property {String} enlaceProducto
  */
 
+import _ from 'lodash';
+
 /**
  * @param {object} entrada
  * @param {String} entrada.texto limite de resultados
@@ -16,10 +18,10 @@
  * @returns {Resultado[]}
  */
 
-const obtenerResultadosFalabella = async ({ texto, limit = 10 }) => {
-  const { URL_BASE } = process.env;
+const obtenerResultadosFalabella = async ({ texto, limit = 25 }) => {
+  const { URL_BASE_FALABELLA } = process.env;
 
-  const url = `${URL_BASE}/falabella/${texto}/${limit}`;
+  const url = `${URL_BASE_FALABELLA}/falabella/${limit}?buscar=${texto}`;
 
   try {
     const llamado = await (fetch(url));
@@ -32,7 +34,7 @@ const obtenerResultadosFalabella = async ({ texto, limit = 10 }) => {
 
     const resultado = await llamado.json();
 
-    return resultado;
+    return _.flattenDeep(resultado);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(error);

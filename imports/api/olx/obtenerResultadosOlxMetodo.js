@@ -1,4 +1,5 @@
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
+import { Promise as MPromise } from 'meteor/promise';
 
 import SimpleSchema from 'simpl-schema';
 
@@ -8,12 +9,13 @@ const obtenerResultadosOlxMetodo = new ValidatedMethod({
   name: 'obtenerResultadosOlx',
   validate: new SimpleSchema({
     limit: { type: Number },
+    texto: { type: String },
   }).validator(),
-  run({ limit }) {
+  run({ limit, texto }) {
     this.unblock();
-    const resultados = obtenerResultadosOlx(limit);
+    const resultados = obtenerResultadosOlx({ limit, texto });
 
-    return resultados;
+    return MPromise.await(resultados);
   },
 });
 
